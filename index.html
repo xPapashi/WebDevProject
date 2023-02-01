@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Page</title>
     <link rel="stylesheet" href="./style/style.css" />
+    <script src="./app.js" defer></script>
   </head>
-  <body>
+  <body onclick="closeNav()">
     <div class="header">
       <div class="linksLeft">
         <div class="logo"><a href="index.html">AceTraining</a></div>
         <div class="logo-separator"></div>
         <ul class="links">
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="index.html" class="active-nav">Home</a></li>
           <li><a href="#">Timeline</a></li>
           <li><a href="#">Course</a></li>
           <li><a href="#">Sample Text</a></li>
@@ -24,17 +25,21 @@
         <div class="profile-image">
           <div class="profile-initials">JS</div>
         </div>
-        <div class="profile-tick"><a href="#">^</a></div>
+        <div class="profile-tick"><a href="#">&#9660;</a></div>
       </div>
     </div>
-    <div class="main">
-      <div class="sidebar">
-        <ul>
-          <li><a href="#">Sample Text</a></li>
-          <li><a href="#">Sample Text</a></li>
-          <li><a href="#">Sample Text</a></li>
-          <li><a href="#">Sample Text</a></li>
-        </ul>
+    <div class="main" id="balmain">
+      <div id="sidebar-icon" onclick="openNav()">&#9776</div>
+      <div class="sidebar" id="mySideNav">
+        <div class="sidebar-content">
+          <div class="sidebar-title">Courses</div>
+          <ul>
+            <li><a href="#CS" class="active-course">Computer Science</a></li>
+            <li><a href="#NET">Networking</a></li>
+            <li><a href="#Robo">Robotics</a></li>
+            <li><a href="#SE">Software Engineering</a></li>
+          </ul>
+        </div>
       </div>
       <div class="container">
         <div class="content">

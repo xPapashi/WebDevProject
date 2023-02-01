@@ -101,7 +101,7 @@ body {
     color: rgba(255, 255, 255, 0.534);
 }
 
-.active {
+.active-nav {
     border-bottom: 3px solid #FFF;
 }
 
@@ -113,11 +113,20 @@ body {
 }
 
 .sidebar {
-    width: 300px;
+    width: 250px;
     background-color: #fff;
     flex-shrink: 0;
     padding: 16px;
     border-right: 3px solid hsla(0, 0%, 42%, 0.4);
+    transition: 0.5s;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+.sidebar-content {
+    background-color: #D9D9D9;
+    padding: 15px;
+    border-radius: 16px;
 }
 
 .sidebar ul {
@@ -127,13 +136,41 @@ body {
 }
 
 .sidebar ul li {
-    margin-bottom: 16px;
+    /*Content*/
 }
 
 .sidebar ul li a {
     text-decoration: none;
     color: #000;
     font-size: 24px;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar-title {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#sidebar-icon {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+    background-color: #fff;
+    border-radius: 0px 15px 15px 0px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    transition: 0.3s;
+    display: none;
+}
+
+.active-course {
+    font-weight: 800;
 }
 
 .container {
@@ -173,4 +210,9 @@ body {
 
 .content p {
     padding-top: 20px;
+}
+
+/* Main Content Hover Effects */
+#sidebar-icon:hover {
+    background-color: #757575;
 }
