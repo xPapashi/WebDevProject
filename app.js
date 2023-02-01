@@ -12,7 +12,6 @@ function openNav() {
 
 function closeNav() {
     body.addEventListener('click', function (e) {
-        console.log(e);
         if (!(e.target.id === "mySideNav" || 
         e.target.className === "sidebar-content" ||
         e.target.className === "sidebar-title" ||
