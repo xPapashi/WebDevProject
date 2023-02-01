@@ -112,6 +112,8 @@ body {
     flex: 1;
 }
 
+/* Sidebar Navigation */
+
 .sidebar {
     width: 250px;
     background-color: #fff;
@@ -136,7 +138,7 @@ body {
 }
 
 .sidebar ul li {
-    /*Content*/
+    margin-bottom: 16px;
 }
 
 .sidebar ul li a {
@@ -179,6 +181,8 @@ body {
     flex-wrap: wrap;
 }
 
+/* Main Content */
+
 .content {
     display: flex;
     flex-direction: column;
@@ -188,9 +192,12 @@ body {
     border-radius: 12px;
 }
 
+/* Heading Underline */
+
 .content .heading {
-    font-size: 64px;
+    font-size: 50px;
     text-align: center;
+    font-weight: 700;
 }
 
 .content .heading span {
@@ -210,6 +217,213 @@ body {
 
 .content p {
     padding-top: 20px;
+}
+
+/* Student Portal Grid Content */
+
+.content-grid {
+    display: flex;
+    padding: 2em;
+    margin-top: 5em;
+    gap: 69px;
+    justify-content: space-around;
+}
+
+.left-content, .right-content {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Left Content */
+
+.left-content {
+    display: flex;
+}
+
+.container-student {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid rgba(134, 134, 134, 0.5);;
+    border-radius: 16px;
+    padding: 1.5rem 5em;
+}
+
+.container-student .title-underline {
+    text-align: center;
+}
+
+.container-student .title-underline span {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.container-student .title-underline span::after {
+    position: absolute;
+    left:0;
+    bottom:0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 6px solid #4DAF98;
+    content: "";
+}
+
+.container-student .profile-shape {
+    width: 222px;
+    height: 222px;
+    margin-top: 50px;
+    background-color: #4DAF98;
+    border-radius: 50%;
+}
+
+.container-student .student-information {
+    font-weight: 400;
+    text-align: center;
+}
+
+.container-student .student-information h3 {
+    padding: 0;
+    margin: 15px 0 0 0 ;
+}
+
+.container-student .student-information p {
+    padding: 0;
+    margin: 0;
+}
+
+/* Right Content */
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+/* Course Information */
+
+.container-course {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid rgba(134, 134, 134, 0.5);;
+    border-radius: 16px;
+    padding: 1.5rem 1.5rem;
+}
+
+.container-course .title-underline {
+    align-self: baseline;
+}
+
+.container-course .title-underline span {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.container-course .title-underline span::after {
+    position: absolute;
+    left:0;
+    bottom:0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 6px solid #4DAF98;
+    content: "";
+}
+
+.container-course .course-information {
+    padding: 1.5rem 0 0 0;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.container-course .course-information ul {
+    padding: 0;
+    padding-left: 1.5em;
+    list-style: none;
+}
+
+
+.container-course .course-information li {
+    padding: 0 0 0 0;
+    margin: 10px 0 0 0;
+}
+
+.container-course .course-information li::before {
+    content: "\00b7";
+    color: #28856F;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: -1em;
+    margin-right: 10px;
+}
+
+.container-course .course-information a {
+    text-decoration: none;
+    color: #000;
+}
+
+
+/* Reports Information */
+
+.container-report {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid rgba(134, 134, 134, 0.5);;
+    border-radius: 16px;
+    padding: 1.5rem 1.5rem;
+}
+
+.container-report .title-underline {
+    align-self: baseline;
+}
+
+.container-report .title-underline span {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.container-report .title-underline span::after {
+    position: absolute;
+    left:0;
+    bottom:0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 6px solid #4DAF98;
+    content: "";
+}
+
+.container-report .report-information {
+    padding: 1.5rem 0 0 0;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.container-report .report-information ul {
+    padding: 0;
+    padding-left: 1.5em;
+    list-style: none;
+}
+
+
+.container-report .report-information li {
+    padding: 0 0 0 0;
+    margin: 10px 0 0 0;
+}
+
+.container-report .report-information li::before {
+    content: "\00b7";
+    color: #28856F;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: -1em;
+    margin-right: 10px;
+}
+
+.container-report .report-information a {
+    text-decoration: none;
+    color: #000;
 }
 
 /* Main Content Hover Effects */
