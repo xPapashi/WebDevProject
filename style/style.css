@@ -225,8 +225,8 @@ body {
     display: flex;
     padding: 2em;
     margin-top: 5em;
-    gap: 69px;
-    justify-content: space-around;
+    gap: 40px;
+    justify-content: space-evenly;
 }
 
 .left-content, .right-content {
@@ -247,7 +247,7 @@ body {
     align-items: center;
     border: 3px solid rgba(134, 134, 134, 0.5);;
     border-radius: 16px;
-    padding: 1.5rem 5em;
+    padding: 1.5rem 3em;
 }
 
 .container-student .title-underline {
