@@ -21,7 +21,7 @@ You will need to have the following software installed on your machine:
 
 ## Installing
 1. Clone the repository to your local machine
-``` git clone https://github.com/[YOUR_USERNAME]/AceTraining.git ```
+``` git clone https://github.com/xPapashi/WebDevProject.git ```
 
 2. Navigate into the cloned directory
 ``` cd AceTraining ```
