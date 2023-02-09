@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Page</title>
+    <link rel="stylesheet" href="./style/quiz_style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body onclick="closeNav()">
+    <div class="header">
+      <div class="linksLeft">
+        <div class="logo"><a href="index.html">AceTraining</a></div>
+        <div class="logo-separator"></div>
+        <ul class="links">
+          <li><a href="index.html" class="active-nav">Home</a></li>
+          <li><a href="#">Timeline</a></li>
+          <li><a href="#">Course</a></li>
+          <li><a href="#">Sample Text</a></li>
+          <li><a href="#">Sample Text</a></li>
+        </ul>
+      </div>
+      <div class="linksRight">
+        <div class="profile-image">
+          <div class="profile-initials">JS</div>
+        </div>
+        <div class="profile-tick"><a href="./student_page_info.html">&#9660;</a></div>
+      </div>
+    </div>
+    <div class="main" id="">
+      <div id="sidebar-icon" onclick="openNav()">&#9776</div>
+      <div class="sidebar" id="mySideNav">
+        <div class="sidebar-content">
+          <div class="sidebar-title">Courses</div>
+          <ul>
+            <li class="dropdown"><a href="#CS" class="active-course" aria-haspopup="true" >Computer Science</a>
+              <ul class="dropdown-content" aria-label="submenu">
+                <li><a href="#">QUIZ 1</a></li>
+                <li><a href="#">QUIZ 2</a></li>
+                <li><a href="#">QUIZ 3</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#Net" aria-haspopup="true" > Networking</a>
+              <ul class="dropdown-content" aria-label="submenu">
+                <li><a href="#">QUIZ 1</a></li>
+                <li><a href="#">QUIZ 2</a></li>
+                <li><a href="#">QUIZ 3</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#Rob" aria-haspopup="true" >Robotics</a>
+              <ul class="dropdown-content" aria-label="submenu">
+                <li><a href="#">QUIZ 1</a></li>
+                <li><a href="#">QUIZ 2</a></li>
+                <li><a href="#">QUIZ 3</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#SE" aria-haspopup="true" >Engineering</a>
+              <ul class="dropdown-content" aria-label="submenu">
+                <li><a href="#">QUIZ 1</a></li>
+                <li><a href="#">QUIZ 2</a></li>
+                <li><a href="#">QUIZ 3</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="content">
+          <div class="heading"><span>Computer Science</span></div>
+          <p>
+          </p>
+          <h3>Welcome to the Quiz page!  <br>
+            <br>
+            This is where you can track your progress on your quiz and complete the quiz you must for your course. Please select the course on the sidebar to got your main course to start your quiz.
+          </h3>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
