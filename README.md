@@ -24,7 +24,7 @@ You will need to have the following software installed on your machine:
 ``` git clone https://github.com/xPapashi/WebDevProject.git ```
 
 2. Navigate into the cloned directory
-``` cd AceTraining ```
+``` cd WebDevProject ```
 
 3. Install the necessary dependencies
 ``` npm install ```
