@@ -15,7 +15,7 @@ html, body{
     box-shadow: 0px 3px 1px 0px #2e2e2e;
     background-color: #D9D9D9;
     width: 375px;
-    height: 375px;
+    height: 350px;
     text-align: center;
     border-radius: 10px;
 }
@@ -57,13 +57,13 @@ h2{
 
 .label1{
     display: flex;
-    width: 180px;
+    width: 160px;
     justify-content: center;
 }
 
 .label2{
     display: flex;
-    width: 215px;
+    width: 195px;
     justify-content: center;
 }
 
