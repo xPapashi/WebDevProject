@@ -7,37 +7,45 @@
     <title>Main Page</title>
     <link rel="stylesheet" href="./style/login_style.css" />
     <script src="./app.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/031c7b0341.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="loginContainer">
       <h1><u>Login</u></h1>
-      <div class="email">
-        <div class="label1">
-          <label for="email"><h2>E-mail:</h2></label>
+      <form action="###" method="post">
+        <div class="email">
+          <div class="label1">
+            <label for="email"><h2>E-mail:</h2></label>
+          </div>
+          <div class="emailInput">
+            <i class="fa-solid fa-envelope"></i>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="example@email.com"
+            />
+          </div>
         </div>
-        <div class="emailInput">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="example@email.com"
-          />
+        <br /><br />
+        <div class="password">
+          <div class="label2">
+            <label for="password"><h2>Password:</h2></label>
+          </div>
+          <div class="passwordInput">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="password123"
+            />
+          </div>
         </div>
-      </div>
-      <br /><br />
-      <div class="password">
-        <div class="label2">
-          <label for="password"><h2>Password:</h2></label>
-        </div>
-        <div class="emailInput">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="password123"
-          />
-        </div>
-      </div>
+      </form>
       <br />
       <input class="submitButton" type="submit" name="submit" id="submit" />
     </div>
