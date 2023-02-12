@@ -23,8 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
     }
-    $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    var_dump($hash);
     $is_invalid = true;
 }
 ?>
