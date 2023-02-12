@@ -256,3 +256,8 @@ body {
 .content p {
     padding-top: 20px;
 }
+
+/* Main Content Hover Effects */
+#sidebar-icon:hover {
+    background-color: #757575;
+}

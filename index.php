@@ -52,7 +52,7 @@
             <a href="./logout.php">&#9660</a>
           </div>
         <?php else: ?>
-          <p><a href="./login_page.php">Login</a></p>
+          <p><a href="./login_page.php">Login</a> | <a href="./register_page.php">Register</a></p>
         <?php endif; ?>
       </div>
     </div>
