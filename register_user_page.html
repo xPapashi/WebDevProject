@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Page</title>
-    <link rel="stylesheet" href="./style/login_style.css" />
+    <link rel="stylesheet" href="./style/register_user_ style.css" />
     <script src="./app.js" defer></script>
     <script
       src="https://kit.fontawesome.com/031c7b0341.js"
@@ -13,36 +13,61 @@
     ></script>
   </head>
   <body>
-    <div class="loginContainer">
+    <div class="registerContainer">
       <h1><u>Register User</u></h1>
-      <form action="###" method="post">
-        <div class="forename">
-          <label for="forename"><h2>Forename:</h2></label>
-          <input type="text" id="forename" name="forename" placeholder="John" />
+      <form action="###" method="post"></form>
+      <div class="contents">
+        <div class="contents1">
+          <div class="forename">
+            <div class="forenameLabel">
+            <label for="forename"><h2>Forename:</h2></label>
+            </div>
+            <input
+              type="text"
+              id="forename"
+              name="forename"
+              placeholder="John"
+            />
+          </div>
+          <div class="surname">
+            <div class="surnameLabel">
+              <label for="surname"><h2>Surname:</h2></label>
+            </div>
+            <input
+              type="text"
+              id="surname"
+              name="surname"
+              placeholder="Smith"
+            />
+          </div>
         </div>
-        <div class="surname">
-          <label for="surname"><h2>Surname:</h2></label>
-          <input type="text" id="surname" name="surname" placeholder="Smith" />
+        <br>
+        <div class="contents2">
+          <div class="userType">
+            <div class="userTypeLabel">
+              <label for="userType"><h2>User Type:</h2></label>
+            </div>
+            <select name="userType" id="userType">
+              <option value="tutor">Tutor</option>
+              <option value="Student">Student</option>
+            </select>
+          </div>
+          <div class="course">
+            <div class="courseLabel">
+              <label for="course"><h2>Course:</h2></label>
+            </div>
+            <select name="course" id="course">
+              <option value="compSci">Computer Science</option>
+              <option value="net">Networks</option>
+              <option value="robo">Robotics</option>
+              <option value="aI">AI</option>
+            </select>
+          </div>
         </div>
-        <div class="userType">
-          <label for="userType"><h2>User Type:</h2></label>
-          <select name="userType" id="userType">
-            <option value="teacher">Teacher</option>
-            <option value="Student">Student</option>
-          </select>
-        </div>
-        <div class="course">
-          <label for="course"><h2>Course:</h2></label>
-          <select name="course" id="course">
-            <option value="compSci">Computer Science</option>
-            <option value="net">Networks</option>
-            <option value="robo">Robotics</option>
-            <option value="aI">AI</option>
-          </select>
-        </div>
-      </form>
-      <br />
-      <input class="submitButton" type="submit" name="submit" id="submit" />
+        </form>
+        <br />
+        <input class="submitButton" type="submit" name="submit" id="submit" />
+      </div>
     </div>
   </body>
 </html>
