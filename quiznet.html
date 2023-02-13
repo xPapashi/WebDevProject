@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Page</title>
     <link rel="stylesheet" href="./style/quiz_style.css" />
-    <script src="./quizapp.js" defer></script>
+    <script src="./app.js" defer></script>
   </head>
-  <body onclick="closeNav(); closequizbox();">
+  <body onclick="closeNav()">
     <div class="header">
       <div class="linksLeft">
         <div class="logo"><a href="index.html">AceTraining</a></div>
@@ -34,14 +34,14 @@
         <div class="sidebar-content">
           <div class="sidebar-title">Courses</div>
           <ul>
-            <li class="dropdown"><a href="quizcs.html" class="active-course" aria-haspopup="true" >Computer Science</a>
+            <li class="dropdown"><a href="quizcs.html" aria-haspopup="true" >Computer Science</a>
               <ul class="dropdown-content" aria-label="submenu">
-                <li><a id="csq1" href="quizcs.html">QUIZ 1</a></li>
-                <li><a id="csq2">QUIZ 2</a></li>
-                <li><a id="csq3">QUIZ 3</a></li>
+                <li><a href="quizcs.html">QUIZ 1</a></li>
+                <li><a href="#">QUIZ 2</a></li>
+                <li><a href="#">QUIZ 3</a></li>
               </ul>
             </li>
-            <li class="dropdown"><a href="quiznet.html" aria-haspopup="true" > Networking</a>
+            <li class="dropdown"><a href="quiznet.html" class="active-course" aria-haspopup="true" > Networking</a>
               <ul class="dropdown-content" aria-label="submenu">
                 <li><a href="#">QUIZ 1</a></li>
                 <li><a href="#">QUIZ 2</a></li>
@@ -69,25 +69,25 @@
         <div class="content">
         <div class="heading"><span>Computer Science</span></div>
         <div class="content-grid">
-            <div id="quiz1" class="quiz" onclick="openquizbox()" >
+            <div id="quiz1" class="quiz" >
               <h1 class="quiz-header">Quiz 1</h1>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
               <bk></bk>
               <div class="progress-container">
-                <div class="bar" > 01%</div>
+                <div class="bar"> 01%</div>
               </div>
-              <div class="button" ><a href="#quiz1">Start</div></a>
+              <div class="button"><a href="#quiz1">Start</div></a>
             </div>
-            <div id="quiz2" class="quiz" onclick="openquizbox()" >
+            <div id="quiz1" class="quiz" >
               <h1 class="quiz-header">Quiz 2</h1>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
               <bk></bk>
               <div class="progress-container">
-                <div class="bar" >01%</div>
+                <div class="bar">01%</div>
               </div>
               <div class="button"><a href="#quiz2">Start</div></a>
             </div>
-            <div id="quiz3" class="quiz" >
+            <div id="quiz1" class="quiz" >
               <h1 class="quiz-header">Quiz 3</h1>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
               <bk></bk>

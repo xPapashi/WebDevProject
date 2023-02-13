@@ -184,6 +184,7 @@ body {
     padding: 32px;
     display: flex;
     flex-wrap: wrap;
+    width:100%;
 }
 
 /* Main Content */
@@ -195,7 +196,7 @@ body {
     padding: 32px;
     border: 3px solid hsla(0, 0%, 42%, 0.4);
     border-radius: 12px;
-    max-width: 1725px;
+    width:100%;
 }
 
 /* Heading Underline */
@@ -327,6 +328,10 @@ nav ul {
     height: 350px;
 }
 
+.quiz-open{
+    height: 350px;
+}
+
 .quiz-header{
     font-size: 24px;
     font-weight: 700;
@@ -375,6 +380,14 @@ nav ul {
   
   .bar {
     height: 100%;
-    background-color: #636363;
+    background-color: #4DAF98;
     border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    font-weight:900 ;
+    text-align: center;
+    padding:0.5px;
+    width: 5%;
   }
+
+
