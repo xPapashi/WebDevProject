@@ -13,8 +13,20 @@
     $letter_forename = substr($user["forename"], 0, 1);
     $letter_surname = substr($user["surname"], 0, 1);
     $initials = $letter_forename . $letter_surname;
+    $userType = $user["user"];
 
     $_SESSION["user_initials"] = $initials;
+    $_SESSION["userType"] = $userType;
+
+    function getUserType($user){
+      if ($user === "Admin") {
+          return "./admin-page_info.html";
+      } else if ($user === "Tutor") {
+          return "./teacher_page_info.php";
+      } else if ($user === "Student") {
+          return "./student_page_info.php";
+      }
+    }
   }
 ?>
 
@@ -27,6 +39,7 @@
     <title>Main Page</title>
     <link rel="stylesheet" href="./style/index_style.css" />
     <script src="./app.js" defer></script>
+    <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
   </head>
   <body onclick="closeNav()">
     <div class="header">
@@ -49,15 +62,14 @@
             </div>
           </div>
           <div class="profile-tick">
-            <a href="./logout.php">&#9660</a>
+            <a href="<?php echo getUserType($userType);?>">&#9660</a>
           </div>
         <?php else: ?>
-          <p><a href="./login_page.php">Login</a> | <a href="./register_page.php">Register</a></p>
+          <p><a href="./login_page.php">Login <i class="fa-solid fa-user"></i></a></p>
         <?php endif; ?>
       </div>
     </div>
     <div class="main" id="">
-      <div id="sidebar-icon" onclick="openNav()">&#9776</div>
       <div class="sidebar" id="mySideNav">
         <div class="sidebar-content">
           <div class="sidebar-title">Courses</div>
@@ -69,6 +81,7 @@
           </ul>
         </div>
       </div>
+      <div id="sidebar-icon" onclick="openNav()">&#9776</div>
       <div class="container">
         <div class="content">
           <div class="heading"><span>Welcome to AceTraining</span></div>

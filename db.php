@@ -24,7 +24,10 @@
         forename varchar(100) NOT NULL,
         surname varchar(100) NOT NULL,
         email varchar(255) NOT NULL UNIQUE,
-        password varchar(100) NOT NULL
+        password varchar(100) NOT NULL,
+        user varchar(100) NOT NULL,
+        course varchar(100) NOT NULL,
+        authorisation int NOT NULL
     )";
 
     if ($mysqli->query($query) === TRUE) {

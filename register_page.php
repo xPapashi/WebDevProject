@@ -52,7 +52,7 @@
                     <label for="userType"><h2>User Type:</h2></label>
                 </div>
                 <select name="userType" id="userType">
-                    <option value="tutor">Tutor</option>
+                    <option value="Tutor">Tutor</option>
                     <option value="Student">Student</option>
                 </select>
                 </div>
@@ -61,10 +61,10 @@
                     <label for="course"><h2>Course:</h2></label>
                 </div>
                 <select name="course" id="course">
-                    <option value="compSci">Computer Science</option>
-                    <option value="net">Networks</option>
-                    <option value="robo">Robotics</option>
-                    <option value="aI">AI</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Networks">Networks</option>
+                    <option value="Robotics">Robotics</option>
+                    <option value="AI">AI</option>
                 </select>
                 </div>
             </div>
