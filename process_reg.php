@@ -34,6 +34,12 @@
     $sql = "UPDATE users SET email='$email', password='$password_hash' WHERE id='$user_id'";
 
     if (mysqli_query($mysqli, $sql)) {
+        session_start();
+
+        session_regenerate_id();
+
+        $_SESSION["user_id"] = $user_id;
+
         header("Location: index.php");
         exit;
     } else {
