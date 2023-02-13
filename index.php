@@ -37,7 +37,7 @@
           <li><a href="index.html" class="active-nav">Home</a></li>
           <li><a href="#">Timeline</a></li>
           <li><a href="./course_list.html">Courses</a></li>
-          <li><a href="#">Sample Text</a></li>
+          <li><a href="Quiz_course.html">Quizez</a></li>
           <li><a href="#">Sample Text</a></li>
         </ul>
       </div>
