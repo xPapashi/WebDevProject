@@ -5,9 +5,6 @@
         die("Surname is required!");
     }
 
-    // Hash password
-    // $password_hash = password_hash(passwordVariable, PASSWORD_DEFAULT);
-
     $mysqli = require __DIR__ . "/db.php";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -27,11 +24,13 @@
     $letter_forename = substr($_POST["forename"], 0, 1);
     $email = $letter_forename . $surname . $user_id . '@system.edu';
     $password = $letter_forename . $surname . $user_id;
+    $userType = $_POST["userType"];
+    $userCourse = $_POST["course"];
 
     // Hash password
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "UPDATE users SET email='$email', password='$password_hash' WHERE id='$user_id'";
+    $sql = "UPDATE users SET email='$email', password='$password_hash', user='$userType', course='$userCourse' WHERE id='$user_id'";
 
     if (mysqli_query($mysqli, $sql)) {
         session_start();
@@ -46,5 +45,5 @@
         echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
     }
 
-    print_r($_POST);
+    // print_r($_POST);
 ?>

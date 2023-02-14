@@ -44,6 +44,17 @@ body {
     font-weight: 300;
 }
 
+.linksRight a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.linksRight i {
+    margin-left: 5px;
+}
+
 .logo {
     margin-right: -20px;
     cursor: pointer;
@@ -168,7 +179,6 @@ body {
     transition: 0.3s ease;
     cursor: pointer;
     transition: 0.3s;
-    display: none;
 }
 
 .active-course {

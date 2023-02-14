@@ -6,8 +6,6 @@ function openNav() {
     sidebar.style.width = '250px';
     sidebar.style.padding = '16px';
     sidebar.style.borderRight = '3px solid hsla(0, 0%, 42%, 0.4)';
-    sidebarIcon.style.display = 'none';
-
 }
 
 function closeNav() {
