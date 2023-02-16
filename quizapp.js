@@ -5,6 +5,8 @@ const quiz1 =document.querySelector('#quiz1')
 const quiz2 =document.querySelector('#quiz2')
 const quiz3 =document.querySelector('#quiz3')
 const allquiz = document.querySelector('.quiz')
+var csa = document.getElementById('CS')
+
 
 function openNav() {
     sidebar.style.width = '250px';
@@ -32,24 +34,34 @@ function closeNav() {
 
 function openquizbox(){
     body.addEventListener('click', function (e){
-        if (e.target.id === 'quiz1'){
+        if (e.target.id === 'quiz1'||
+        e.target.id === 'Q1'){
             quiz1.style.height= '400px';
         };
-        if (e.target.id==='quiz2') {
+        if (e.target.id==='quiz2' ||
+        e.target.id === 'Q2' ){
             quiz2.style.height= '400px';  
         };
-            
-        },false);
+        if (e.target.id==='quiz3' ||
+        e.target.id === 'Q3') {
+            quiz3.style.height= '400px';
+        };
+    } ,false);
             
 }
 
 function closequizbox(){
     body.addEventListener('click', function (e){
-        if (!(e.target.className === 'quiz')){
+        if (!(e.target.id === 'quiz1')){
             quiz1.style.height = '40px';
         };
-        if (!(e.target.className === 'quiz')){
+        if (!(e.target.id === 'quiz2')){
             quiz2.style.height = '40px';
+        };
+        if (!(e.target.id === 'quiz3')){
+            quiz3.style.height = '40px';
         };
     }, true)
 }
+
+

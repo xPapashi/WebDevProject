@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Page</title>
+    <link rel="stylesheet" href="./style/quiz_style.css" />
+    <script src="./quizapp.js" defer></script>
+  </head>
+  <body onclick="closeNav();">
+    <div class="header">
+      <div class="linksLeft">
+        <div class="logo"><a href="index.html">AceTraining</a></div>
+        <div class="logo-separator"></div>
+        <ul class="links">
+          <li><a href="index.html" class="active-nav">Home</a></li>
+          <li><a href="#">Timeline</a></li>
+          <li><a href="./course_list.html">Courses</a></li>
+          <li><a href="Quiz_course.html">Quizzez</a></li>
+          <li><a href="#">Sample Text</a></li>
+        </ul>
+      </div>
+      <div class="linksRight">
+        <div class="profile-image">
+          <div class="profile-initials">JS</div>
+        </div>
+        <div class="profile-tick"><a href="./student_page_info.html">&#9660;</a></div>
+      </div>
+    </div>
+    <div class="main" id=""> 
+      <div class="container">
+        <div class="content">
+        <div class="heading" id='main_heading'><span>Computer Science Quiz 1</span></div>
+        <div class="content-grid">
+            <div id="quiz1" class="Quiz_Q_box" >
+              <div class="question" >Q1) What is Computational Thinking? </div>
+              <bk></bk>
+              <div class="inside-container">
+                <label><input type="checkbox" name="A1" id="1" class="myinput large"> Answer 1 <br></label>
+                <br>
+                <label><input type="checkbox" name="A1" id="2" class="myinput large"> Answer 2 <br></label>
+                <br>
+                <label><input type="checkbox" name="A1" id="3" class="myinput large"> Answer 3 <br></label>
+                <br>
+                <label><input type="checkbox" name="A1" id="4" class="myinput large"> Answer 4 <br></label>
+              <div class="button" ><a>Next</div></a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
