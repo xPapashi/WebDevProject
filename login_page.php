@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $is_invalid = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -24,12 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
     $is_invalid = true;
+} else if (isset($_SESSION["user_id"])) {
+    header("Location: index.php");
+    die();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -39,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="./app.js" defer></script>
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
     <div class="loginContainer">
         <?php if ($is_invalid) : ?>
@@ -75,5 +78,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </div>
 </body>
-
 </html>

@@ -26,7 +26,6 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -36,7 +35,6 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
     <script src="./app.js" defer></script>
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
-
 <body onclick="closeNav()">
     <div class="header">
         <div class="linksLeft">
@@ -60,8 +58,6 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
                 <div class="profile-tick">
                     <a href="./teacher_page_info.php">&#9660</a>
                 </div>
-            <?php else : ?>
-                <p><a href="./login_page.php">Login <i class="fa-solid fa-user"></i></a></p>
             <?php endif; ?>
         </div>
     </div>
@@ -146,5 +142,4 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
         </div>
     </div>
 </body>
-
 </html>

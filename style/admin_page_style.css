@@ -382,7 +382,7 @@ body {
     flex-direction: column;
     justify-content: center;
     width: 382px;
-    border: 3px solid rgba(134, 134, 134, 0.5);;
+    border: 3px solid rgba(134, 134, 134, 0.5);
     border-radius: 16px;
     padding: 1.5rem 1.5rem;
 }
@@ -441,4 +441,95 @@ body {
 /* Main Content Hover Effects */
 #sidebar-icon:hover {
     background-color: #757575;
+}
+
+/* Modal Popup */
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-heading h1 {
+    font-size: 20px;
+}
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: rgb(212, 59, 59);
+    color: #fff;
+}
+
+.close-button:hover {
+    background-color: rgb(180, 69, 69);
+    transition: 0.3s;
+}
+
+.modal-content input[type=email] {
+    border: 2px solid rgba(134, 134, 134, 0.5);
+    border-radius: 3px;
+    padding: 0.5em;
+}
+
+.modal-content input[type=submit] {
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: #4DAF98;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.modal-content input[type=submit]:hover {
+    background-color: #28856F;
+    transition: 0.3s;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    z-index: 1;
+}
+
+.trigger {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
 }
