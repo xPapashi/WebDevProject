@@ -20,7 +20,7 @@
 
     function getUserType($user){
       if ($user === "Admin") {
-          return "./admin-page_info.html";
+          return "./admin_page_info.php";
       } else if ($user === "Tutor") {
           return "./teacher_page_info.php";
       } else if ($user === "Student") {
@@ -42,12 +42,12 @@
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
   </head>
   <body onclick="closeNav()">
-    <div class="header">
+  <div class="header">
       <div class="linksLeft">
-        <div class="logo"><a href="index.html">AceTraining</a></div>
+        <div class="logo"><a href="index.php">AceTraining</a></div>
         <div class="logo-separator"></div>
         <ul class="links">
-          <li><a href="index.html" class="active-nav">Home</a></li>
+          <li><a href="index.php" class="active-nav">Home</a></li>
           <li><a href="#">Timeline</a></li>
           <li><a href="./course_list.html">Courses</a></li>
           <li><a href="Quiz_course.html">Quizez</a></li>

@@ -1,5 +1,13 @@
 <?php
-    // forename+surname+id+@system.edu
+    session_start();
+
+    if (isset($_SESSION["user_id"]) and ($_SESSION["userType"]) != "Admin") {
+      header("Location: index.php");
+      die();
+    } else if (!isset($_SESSION["user_id"])) {
+      header("Location: index.php");
+      die();
+    }
 ?>
 
 <!DOCTYPE html>
