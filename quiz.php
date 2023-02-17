@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Page</title>
     <link rel="stylesheet" href="./style/quiz_style.css" />
-    <script src="./app.js" defer></script>
+    <script src="./quizapp.js" defer></script>
   </head>
-  <body onclick="closeNav()" >
+  <body onclick="closeNav(); closequizbox();">
     <div class="header">
       <div class="linksLeft">
         <div class="logo"><a href="index.html">AceTraining</a></div>
@@ -17,7 +17,7 @@
           <li><a href="index.html" class="active-nav">Home</a></li>
           <li><a href="#">Timeline</a></li>
           <li><a href="./course_list.html">Courses</a></li>
-          <li><a href="#">Sample Text</a></li>
+          <li><a href="Quiz_course.html">Quizzez</a></li>
           <li><a href="#">Sample Text</a></li>
         </ul>
       </div>
@@ -34,28 +34,28 @@
         <div class="sidebar-content">
           <div class="sidebar-title">Courses</div>
           <ul>
-            <li class="dropdown"><a href="quizcs.html" aria-haspopup="true" >Computer Science</a>
+            <li class="dropdown"><a href="#CS" id="CS" aria-haspopup="true" >Computer Science</a>
               <ul class="dropdown-content" aria-label="submenu">
-                <li><a href="quizcs.html">QUIZ 1</a></li>
-                <li><a href="#">QUIZ 2</a></li>
-                <li><a href="#">QUIZ 3</a></li>
+                <li><a id="csq1">QUIZ 1</a></li>
+                <li><a id="csq2">QUIZ 2</a></li>
+                <li><a id="csq3">QUIZ 3</a></li>
               </ul>
             </li>
-            <li class="dropdown"><a href="quiznet.html" class="active-course" aria-haspopup="true" > Networking</a>
-              <ul class="dropdown-content" aria-label="submenu">
-                <li><a href="#">QUIZ 1</a></li>
-                <li><a href="#">QUIZ 2</a></li>
-                <li><a href="#">QUIZ 3</a></li>
-              </ul>
-            </li>
-            <li class="dropdown"><a href="#Rob" aria-haspopup="true" >Robotics</a>
+            <li class="dropdown"><a href="#Net" id="Net" aria-haspopup="true" > Networking</a>
               <ul class="dropdown-content" aria-label="submenu">
                 <li><a href="#">QUIZ 1</a></li>
                 <li><a href="#">QUIZ 2</a></li>
                 <li><a href="#">QUIZ 3</a></li>
               </ul>
             </li>
-            <li class="dropdown"><a href="#SE" aria-haspopup="true" >Engineering</a>
+            <li class="dropdown"><a href="#Rob" id="Rob" aria-haspopup="true" >Robotics</a>
+              <ul class="dropdown-content" aria-label="submenu">
+                <li><a href="#">QUIZ 1</a></li>
+                <li><a href="#">QUIZ 2</a></li>
+                <li><a href="#">QUIZ 3</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#SE" id="SE" aria-haspopup="true" >Engineering</a>
               <ul class="dropdown-content" aria-label="submenu">
                 <li><a href="#">QUIZ 1</a></li>
                 <li><a href="#">QUIZ 2</a></li>
@@ -67,28 +67,28 @@
       </div>
       <div class="container">
         <div class="content">
-        <div class="heading"><span>Computer Science</span></div>
+        <div class="heading" id='main_heading'><span></span></div>
         <div class="content-grid">
-            <div id="quiz1" class="quiz" >
-              <h1 class="quiz-header">Quiz 1</h1>
+            <div id="quiz1" class="quiz" onclick="openquizbox()" >
+              <h1 class="quiz-header" id="Q1">Quiz 1</h1>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
               <bk></bk>
               <div class="progress-container">
-                <div class="bar"> 01%</div>
+                <div class="bar" > 01%</div>
               </div>
-              <div class="button"><a href="#quiz1">Start</div></a>
+              <div class="button" ><a href="#quiz1">Start</div></a>
             </div>
-            <div id="quiz1" class="quiz" >
-              <h1 class="quiz-header">Quiz 2</h1>
+            <div id="quiz2" class="quiz" onclick="openquizbox()" >
+              <h1 class="quiz-header" id="Q2">Quiz 2</h1>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
               <bk></bk>
               <div class="progress-container">
-                <div class="bar">01%</div>
+                <div class="bar" >01%</div>
               </div>
               <div class="button"><a href="#quiz2">Start</div></a>
             </div>
-            <div id="quiz1" class="quiz" >
-              <h1 class="quiz-header">Quiz 3</h1>
+            <div id="quiz3" class="quiz" >
+              <h1 class="quiz-header" id="Q3">Quiz 3</h1>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
               <bk></bk>
               <div class="progress-container">
