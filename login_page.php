@@ -3,6 +3,7 @@
 session_start();
 
 $is_invalid = false;
+$error_message = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $mysqli = require __DIR__ . "/db.php";
@@ -14,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $result->fetch_assoc();
 
     if ($user) {
-        if (password_verify($_POST["password"], $user["password"])) {
+        if (password_verify($_POST["password"], $user["password"]) &&
+            $user["authorisation"] == "1") {
             session_start();
 
             session_regenerate_id();
@@ -23,9 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             header("Location: index.php");
             exit;
-        }
+        } else if ($user["authorisation"] == "0") {
+            $error_message = "You need to be authorised!";
+            $is_invalid = true;
+        } else if ($_POST["password"] != $user["password"] || 
+                    $_POST['email'] != $user['email']){
+            $error_message = "Invalid Login!";
+            $is_invalid = true;
+        } 
     }
-    $is_invalid = true;
 } else if (isset($_SESSION["user_id"])) {
     header("Location: index.php");
     die();
@@ -46,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <div class="loginContainer">
         <?php if ($is_invalid) : ?>
-            <em>Invalid Login!</em>
+            <em><?= htmlspecialchars($error_message) ?></em>
         <?php endif; ?>
         <h1><u>Login</u></h1>
         <form method="post">

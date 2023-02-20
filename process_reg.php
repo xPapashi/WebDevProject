@@ -15,7 +15,7 @@
     $sql = "INSERT INTO users (forename, surname) VALUES ('$forename','$surname')";
 
     if (mysqli_query($mysqli, $sql)) {
-        echo "New user created successfully!";
+        // echo "New user created successfully!";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
     }
@@ -26,11 +26,12 @@
     $password = $letter_forename . $surname . $user_id;
     $userType = $_POST["userType"];
     $userCourse = $_POST["course"];
+    $auth = "0";
 
     // Hash password
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "UPDATE users SET email='$email', password='$password_hash', user='$userType', course='$userCourse' WHERE id='$user_id'";
+    $sql = "UPDATE users SET email='$email', password='$password_hash', user='$userType', course='$userCourse', authorisation='$auth' WHERE id='$user_id'";
 
     if (mysqli_query($mysqli, $sql)) {
         session_start();
@@ -38,6 +39,8 @@
         session_regenerate_id();
 
         $_SESSION["user_id"] = $user_id;
+
+        echo ("New user created successfully!");
 
         header("Location: index.php");
         exit;

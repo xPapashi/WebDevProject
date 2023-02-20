@@ -27,7 +27,7 @@
         password varchar(100) NOT NULL,
         user varchar(100) NOT NULL,
         course varchar(100) NOT NULL,
-        authorisation int NOT NULL
+        authorisation boolean NOT NULL
     )";
 
     if ($mysqli->query($query) === TRUE) {
