@@ -38,46 +38,9 @@
   </head>
   <body onclick="closeNav()">
     <?php echo $_SESSION["userType"] ?>
-    <div class="header">
-      <div class="linksLeft">
-        <div class="logo"><a href="./index.php">AceTraining</a></div>
-        <div class="logo-separator"></div>
-        <ul class="links">
-          <li><a href="./index.php" class="active">Home</a></li>
-          <li><a href="#">Timeline</a></li>
-          <li><a href="./course_list.html">Courses</a></li>
-          <li><a href="#">Sample Text</a></li>
-          <li><a href="#">Sample Text</a></li>
-        </ul>
-      </div>
-      <div class="linksRight">
-        <?php if (isset($user)): ?>
-          <div class="profile-image">
-            <div class="profile-initials">
-                <p><?= htmlspecialchars($initials) ?></p>
-            </div>
-          </div>
-          <div class="profile-tick">
-            <a href="./student_page_info.php">&#9660</a>
-          </div>
-        <?php else: ?>
-          <p><a href="./login_page.php">Login <i class="fa-solid fa-user"></i></a></p>
-        <?php endif; ?>
-      </div>
-    </div>
+    <?php include('./includes/header.php'); ?>
     <div class="main">
-      <div id="sidebar-icon" onclick="openNav()">&#9776</div>
-      <div class="sidebar" id="mySideNav">
-        <div class="sidebar-content">
-          <div class="sidebar-title">Courses</div>
-          <ul>
-            <li><a href="#CS" class="active-course">Computer Science</a></li>
-            <li><a href="#NET">Networking</a></li>
-            <li><a href="#Robo">Robotics</a></li>
-            <li><a href="#SE">Software Engineering</a></li>
-          </ul>
-        </div>
-      </div>
+      <!-- <?php include('./includes/sidebar.php'); ?> -->
       <div class="container">
         <div class="content">
           <div class="heading"><span>Student Portal</span></div>

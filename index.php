@@ -17,16 +17,6 @@
 
     $_SESSION["user_initials"] = $initials;
     $_SESSION["userType"] = $userType;
-
-    function getUserType($user){
-      if ($user === "Admin") {
-          return "./admin_page_info.php";
-      } else if ($user === "Tutor") {
-          return "./teacher_page_info.php";
-      } else if ($user === "Student") {
-          return "./student_page_info.php";
-      }
-    }
   }
 ?>
 
@@ -42,46 +32,9 @@
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
   </head>
   <body onclick="closeNav()">
-  <div class="header">
-      <div class="linksLeft">
-        <div class="logo"><a href="index.php">AceTraining</a></div>
-        <div class="logo-separator"></div>
-        <ul class="links">
-          <li><a href="index.php" class="active-nav">Home</a></li>
-          <li><a href="#">Timeline</a></li>
-          <li><a href="./course_list.html">Courses</a></li>
-          <li><a href="Quiz_course.html">Quizez</a></li>
-          <li><a href="#">Sample Text</a></li>
-        </ul>
-      </div>
-      <div class="linksRight">
-        <?php if (isset($user)): ?>
-          <div class="profile-image">
-            <div class="profile-initials">
-                <p><?= htmlspecialchars($initials) ?></p>
-            </div>
-          </div>
-          <div class="profile-tick">
-            <a href="<?php echo getUserType($userType);?>">&#9660</a>
-          </div>
-        <?php else: ?>
-          <p><a href="./login_page.php">Login <i class="fa-solid fa-user"></i></a></p>
-        <?php endif; ?>
-      </div>
-    </div>
+    <?php include './includes/header.php'; ?>
     <div class="main" id="">
-      <div class="sidebar" id="mySideNav">
-        <div class="sidebar-content">
-          <div class="sidebar-title">Courses</div>
-          <ul>
-            <li><a href="#CS" class="active-course">Computer Science</a></li>
-            <li><a href="#NET">Networking</a></li>
-            <li><a href="#Robo">Robotics</a></li>
-            <li><a href="#SE">Software Engineering</a></li>
-          </ul>
-        </div>
-      </div>
-      <div id="sidebar-icon" onclick="openNav()">&#9776</div>
+      <!-- <?php include './includes/sidebar.php'; ?> -->
       <div class="container">
         <div class="content">
           <div class="heading"><span>Welcome to AceTraining</span></div>
