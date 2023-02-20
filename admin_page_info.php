@@ -33,8 +33,11 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
     } else if (isset($_POST['password'])) {
       $password = $_POST['password'];
       $regex = '#^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_]).{8,}$#';
-      if (!filter_var($password, FILTER_VALIDATE_REGEXP, 
-          array("options"=>array("regexp"=>$regex)))) {
+      if (!filter_var(
+        $password,
+        FILTER_VALIDATE_REGEXP,
+        array("options" => array("regexp" => $regex))
+      )) {
         echo "Error: Make sure that password meets at least one of the requirements:\n";
         echo "Must be a minimum of 8 characters\n";
         echo "Must contain at least 1 number\n";
@@ -70,6 +73,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
   <link rel="stylesheet" href="./style/admin_page_style.css" />
   <script src="./app.js" defer></script>
   <script src="./modalPopup.js" defer></script>
+  <script src="./handleUsers.js" defer></script>
   <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
 
@@ -108,7 +112,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
               <div class="user-information">
                 <ul>
                   <li><a href="./register_page.php">Add User</a></li>
-                  <li><button class="trigger selectTrigger">Select User</button></li>
+                  <li><button class="trigger selectTrigger" onclick="getUsers()">Select User</button></li>
                   <li><a href="#">Delete User</a></li>
                 </ul>
               </div>
@@ -137,6 +141,19 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
+        <!-- <?php
+        $sql = "SELECT id, forename, surname, email, user FROM users WHERE user='Student'";
+        $result = $mysqli->query($sql);
+
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo "<br> id: " . $row["id"] . " - Name: " . $row['forename'] . " " . $row['surname'] . " - Email: " . $row["email"] . " - User Type: " . $row["user"] . "</br>";
+          }
+        } else {
+          echo "0 Results";
+        }
+        ?> -->
+        <ul id="user-list"></ul>
       </div>
     </div>
   </div>
