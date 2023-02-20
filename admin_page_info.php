@@ -64,7 +64,6 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -76,7 +75,6 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
   <script src="./handleUsers.js" defer></script>
   <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <?php include('./includes/header.php'); ?>
   <div class="main">
@@ -112,7 +110,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
               <div class="user-information">
                 <ul>
                   <li><a href="./register_page.php">Add User</a></li>
-                  <li><button class="trigger selectTrigger" onclick="getUsers()">Select User</button></li>
+                  <li><button class="trigger selectTrigger">Select User</button></li>
                   <li><a href="#">Delete User</a></li>
                 </ul>
               </div>
@@ -131,6 +129,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
             </div>
           </div>
         </div>
+        <?php include('./includes/usersContainer.php'); ?>
         <h3>Sample Text</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -141,22 +140,8 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <!-- <?php
-        $sql = "SELECT id, forename, surname, email, user FROM users WHERE user='Student'";
-        $result = $mysqli->query($sql);
-
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
-            echo "<br> id: " . $row["id"] . " - Name: " . $row['forename'] . " " . $row['surname'] . " - Email: " . $row["email"] . " - User Type: " . $row["user"] . "</br>";
-          }
-        } else {
-          echo "0 Results";
-        }
-        ?> -->
-        <ul id="user-list"></ul>
       </div>
     </div>
   </div>
 </body>
-
 </html>

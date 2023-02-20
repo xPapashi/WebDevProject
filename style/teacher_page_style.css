@@ -438,3 +438,32 @@ body {
 #sidebar-icon:hover {
     background-color: #757575;
 }
+
+.trigger {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Users Select */
+.users-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.users-content {
+    display: flex;
+    justify-content: center;
+    width: 800px;
+    border: 3px solid rgba(134, 134, 134, 0.5);
+    border-radius: 16px;
+}
+
+.users-content ul {
+    padding: 0;
+}
