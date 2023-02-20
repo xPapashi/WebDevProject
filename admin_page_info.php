@@ -33,8 +33,11 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
     } else if (isset($_POST['password'])) {
       $password = $_POST['password'];
       $regex = '#^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_]).{8,}$#';
-      if (!filter_var($password, FILTER_VALIDATE_REGEXP, 
-          array("options"=>array("regexp"=>$regex)))) {
+      if (!filter_var(
+        $password,
+        FILTER_VALIDATE_REGEXP,
+        array("options" => array("regexp" => $regex))
+      )) {
         echo "Error: Make sure that password meets at least one of the requirements:\n";
         echo "Must be a minimum of 8 characters\n";
         echo "Must contain at least 1 number\n";
@@ -61,7 +64,6 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -70,9 +72,9 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
   <link rel="stylesheet" href="./style/admin_page_style.css" />
   <script src="./app.js" defer></script>
   <script src="./modalPopup.js" defer></script>
+  <script src="./handleUsers.js" defer></script>
   <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <?php include('./includes/header.php'); ?>
   <div class="main">
@@ -127,6 +129,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
             </div>
           </div>
         </div>
+        <?php include('./includes/usersContainer.php'); ?>
         <h3>Sample Text</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -141,5 +144,4 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
     </div>
   </div>
 </body>
-
 </html>

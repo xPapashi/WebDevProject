@@ -18,6 +18,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
     $course = $user["course"];
 
     $_SESSION["user_initials"] = $initials;
+    $_SESSION["course"] = $course;
 } else {
     header("Location: index.php");
     die();
@@ -26,6 +27,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,9 +35,11 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
     <title>Teacher Portal Page</title>
     <link rel="stylesheet" href="./style/teacher_page_style.css" />
     <script src="./app.js" defer></script>
+    <script src="./handleUsers.js" defer></script>
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
-<body onclick="closeNav()">
+
+<body>
     <?php include('./includes/header.php'); ?>
     <div class="main">
         <!-- <?php include('./includes/sidebar.php'); ?> -->
@@ -52,12 +56,12 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
                                 <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="teacher-information">
-                                <?php if(isset($user)): ?>
-                                <?="<h3>" . htmlspecialchars("Name: " . $fullname) . "</h3>" ?>
-                                <?="<p>" . htmlspecialchars("E-mail: " . $email) . "</p>" ?>
-                                <?="<p>" . htmlspecialchars("Course: " . $course) . "</p>" ?>
-                                <p>Country: United Kingdom</p>
-                                <p>City: Liverpool</p>
+                                <?php if (isset($user)) : ?>
+                                    <?= "<h3>" . htmlspecialchars("Name: " . $fullname) . "</h3>" ?>
+                                    <?= "<p>" . htmlspecialchars("E-mail: " . $email) . "</p>" ?>
+                                    <?= "<p>" . htmlspecialchars("Course: " . $course) . "</p>" ?>
+                                    <p>Country: United Kingdom</p>
+                                    <p>City: Liverpool</p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -84,6 +88,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
                             </div>
                             <div class="report-information">
                                 <ul>
+                                    <li><button class="trigger selectTrigger">Authorise Student</button></li>
                                     <li><a href="#">Set Grades</a></li>
                                     <li><a href="#">Set Quiz</a></li>
                                 </ul>
@@ -91,15 +96,16 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
                         </div>
                     </div>
                 </div>
+                <?php include('./includes/usersContainer.php'); ?>
                 <h3>Sample Text</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
                 <p><a href="./logout.php">Logout</a></p>
@@ -107,4 +113,5 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
         </div>
     </div>
 </body>
+
 </html>
