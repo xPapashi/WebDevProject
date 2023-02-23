@@ -7,6 +7,7 @@
     //     $users[] = $row;
     // }
 
+
     if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
         $sql = "SELECT * FROM users";
         $result = $mysqli->query($sql);
@@ -33,7 +34,8 @@
             echo "<td>" . $row["email"] . "</td>";
             echo "<td>" . $row["user"] . "</td>";
             echo "<td>" . $row["course"] . "</td>";
-            echo "<td>" . $row["authorisation"] . "</td>";
+            echo "<td>" . $row["authorisation"] .
+                "<button class='auth-btn' data-user-id='".$row["id"]."' onclick='userAuth()'>Authorize</button></td>";
             echo "</tr>";
 
         }

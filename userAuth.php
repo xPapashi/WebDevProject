@@ -3,8 +3,8 @@
 
     $mysqli = require __DIR__ . "/db.php";
 
-    if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") || ($_SESSION['userType'] === "Tutor") and isset($_POST["id"])) {
-        $id = $_POST['id'];
+    if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") || ($_SESSION['userType'] === "Tutor")) {
+        $id = $_POST['userId'];
         $sql = "UPDATE users SET authorisation='1' WHERE id='$id' AND authorisation='0'";
         $result = $mysqli->query($sql);
 

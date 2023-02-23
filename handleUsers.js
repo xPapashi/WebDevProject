@@ -22,7 +22,6 @@ function getUsers() {
   }
 
 function userAuth() {
-    console.log("click");
     const authBtns = document.querySelectorAll('.auth-btn');
     authBtns.forEach(btn => {
         btn.addEventListener('click', function(event) {
