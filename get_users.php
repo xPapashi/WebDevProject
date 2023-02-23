@@ -64,8 +64,8 @@
             echo "<td>" . $row["surname"] . "</td>";
             echo "<td>" . $row["email"] . "</td>";
             echo "<td>" . $row["course"] . "</td>";
-            echo "<td>" . $row["authorisation"] . 
-                "<input type='submit' value='Authorise'>" . "</td>";
+            echo "<td>" . $row["authorisation"] .
+                "<button class='auth-btn' data-user-id='".$row["id"]."' onclick='userAuth()'>Authorize</button></td>";
             echo "</tr>";
 
         }
