@@ -4,6 +4,9 @@
     $table = 'users';
     $username = 'root';
     $password = '';
+    $Qtable = 'quiz';
+    $Questiontable = 'questions';
+    $Qtable = 'choices';
 
     $mysqli = new mysqli($host, $username, $password);
 
@@ -35,6 +38,8 @@
     } else {
         echo "Error while creating table: " . $mysqli->error;
     }
+
+
 
     return $mysqli;
 ?>
