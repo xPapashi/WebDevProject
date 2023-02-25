@@ -63,12 +63,13 @@ $number = (int) $_GET['n'];
               <form method="post" action="Qprocess.php">
                 <ul class="inside-container">
                   <?php while ($row = $choices->fetch_assoc()): ?>
-                    <li><input type="radio" name="choice" value="<?php echo $row["choice_ID"]; ?>"id="1" class="myinput large"/> <?php echo $row["Text"];?></li>
-                  <br>
+                    <input type="radio" name="choice" value="<?php echo $row["choice_ID"]; ?>"id="1" class="myinput large"/> <?php echo $row["Text"];?>
+                    <br></br>
                   <?php endwhile; ?>
-                </ul>
-              </form>
-              <div class="button" ><a>Next</div></a>
+                  </ul>
+              <input style="float:right;" type="submit" value="Next"/>
+              <input type="hidden" name="number" value="<?php echo $number; ?>" />
+            </form>
             </div>
 
           </div>
