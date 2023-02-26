@@ -9,7 +9,7 @@
 
 
     if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users WHERE authorisation='0'";
         $result = $mysqli->query($sql);
 
         $users = array();
