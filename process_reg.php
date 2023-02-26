@@ -47,10 +47,8 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") ||
         // echo ("New user re successfully!");
 
         if ($_SESSION['userType'] === "Admin") {
-            echo ("New user registered successfully!");
-            header("Location: admin_page_info.php"); 
+            header("Location: admin_page_info.php");
         } else if ($_SESSION['userType'] === "Tutor") {
-            echo ("New user registered successfully!");
             header("Location: teacher_page_info.php");
         } else {
             header("Location: index.php");
