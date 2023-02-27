@@ -1,7 +1,8 @@
 <?php
     $host = 'localhost';
     $dbname = 'acetraining';
-    $table = 'users';
+    $mainTable = 'users';
+    $coursesTable = 'courses';
     $username = 'root';
     $password = '';
     $Qtable = 'quiz';
@@ -22,7 +23,7 @@
         echo "Error while creating database: " . $mysqli->error;
     }
 
-    $query = "CREATE TABLE IF NOT EXISTS $table (
+    $query = "CREATE TABLE IF NOT EXISTS $mainTable (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         forename varchar(100) NOT NULL,
         surname varchar(100) NOT NULL,
@@ -39,7 +40,16 @@
         echo "Error while creating table: " . $mysqli->error;
     }
 
+    $query = "CREATE TABLE IF NOT EXISTS $coursesTable (
+        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        owner CHAR(255))";
 
+    if ($mysqli->query($query) === TRUE) {
+        // echo "Table Created";
+    } else {
+        echo "Error while creating table: " . $mysqli->error;
+    }
 
     return $mysqli;
 ?>

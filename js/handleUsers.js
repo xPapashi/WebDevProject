@@ -6,12 +6,14 @@ const answer = document.querySelector('#user-list');
 btnSelect.addEventListener('click', () => {
     getUsers('userAuth');
     isActiveDelete = false;
+    isActiveCourseAdd = false;
     isActiveAuth = !isActiveAuth;
     console.log(isActiveAuth);
 });
 btnDel.addEventListener('click', () => {
   getUsers('userDelete');
   isActiveAuth = false;
+  isActiveCourseAdd = false;
   isActiveDelete = !isActiveDelete;
   console.log(isActiveDelete);
 });
@@ -21,7 +23,8 @@ function getUsers(status) {
   let xml = new XMLHttpRequest();
   xml.onreadystatechange = function() {
     if (xml.readyState === 4 && xml.status === 200 && 
-        isActiveAuth && !isActiveDelete || isActiveDelete && !isActiveAuth) {
+        isActiveAuth && !isActiveDelete && !isActiveCourseAdd || isActiveDelete 
+        && !isActiveAuth && !isActiveCourseAdd) {
       answer.innerHTML = xml.responseText;
     } else {
       answer.innerHTML = "Display Informations";
