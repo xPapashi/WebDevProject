@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $user = $result->fetch_assoc();
 
+    //var_dump(password_hash($_POST['password'], PASSWORD_DEFAULT));
+
     if ($user) {
         if (password_verify($_POST["password"], $user["password"]) &&
             $user["authorisation"] == "1") {

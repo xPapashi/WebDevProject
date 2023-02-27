@@ -111,7 +111,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
                 <ul>
                   <li><a href="./register_page.php">Add User</a></li>
                   <li><button class="trigger selectTrigger">Select User</button></li>
-                  <li><a href="#">Delete User</a></li>
+                  <li><button class="trigger deleteTrigger">Delete User</button></li>
                 </ul>
               </div>
             </div>
