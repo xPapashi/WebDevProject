@@ -13,6 +13,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
   $letter_forename = substr($user["forename"], 0, 1);
   $letter_surname = substr($user["surname"], 0, 1);
   $initials = $letter_forename . $letter_surname;
+  $_SESSION['email'] = $user['email'];
 
   if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['email'])) {
@@ -73,6 +74,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
   <script src="./js/app.js" defer></script>
   <script src="./js/modalPopup.js" defer></script>
   <script src="./js/handleUsers.js" defer></script>
+  <script src="./js/handleCourses.js" defer></script>
   <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -121,9 +123,9 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
               </div>
               <div class="course-information">
                 <ul>
-                  <li><a href="#">Add Course</a></li>
+                  <li><button class="trigger addCourseTrigger">Add Course</button></li>
                   <li><a href="#">Select Course</a></li>
-                  <li><a href="#">Delete Course</a></li>
+                  <li><button class="trigger delCourseTrigger">Delete Course</button></li>
                 </ul>
               </div>
             </div>
@@ -140,6 +142,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
+        <a href="./logout.php">Logout</a>
       </div>
     </div>
   </div>
