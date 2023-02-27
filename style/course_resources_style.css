@@ -140,15 +140,18 @@ body {
     padding: 32px;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    padding: 32px;
+    padding: 32px 64px;
     border: 3px solid hsla(0, 0%, 42%, 0.4);
     border-radius: 12px;
+    width: 50%;
 }
 
 .content .heading {
@@ -182,41 +185,44 @@ body {
     background-color:#D9D9D9;
     padding: 10px;
     border: 3px solid hsla(0, 0%, 42%, 0.4);
-    border-radius: 12px;   
+    border-radius: 12px;
+    margin-bottom: 10px;
 }
 
 button{
     border: 3px solid hsla(0, 0%, 42%, 0.4);
     border-radius: 12px;
+    width: 100px;
 }
 
 .mark{
     background-color: #ffff;
+    cursor: pointer;
 }
 
 .mark:hover {
     background-color: rgb(132, 214, 132);
     color: white;
+    transition: 0.2s ease-in-out;
   }
 
 
-.editPage{
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 1em;
-    height:100%;
-    width:100%;
+
+.addContentButton{
+    margin-top: 10px;
+    width: 100px;
+    border: 3px solid hsla(0, 0%, 42%, 0.4);
+    cursor: pointer;
 }
 
-.editPageButton{
-    padding: 10px;
-    width: 120px;
-    
-}
-
-.editPageButton:hover {
+.addContentButton:hover {
     background-color: gray;
     color: white;
-    
-  }
+    transition: 0.2s ease-in-out;
+}
+
+.topContents{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 10px;
+}
