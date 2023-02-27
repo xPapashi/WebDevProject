@@ -70,9 +70,9 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Portal Page</title>
   <link rel="stylesheet" href="./style/admin_page_style.css" />
-  <script src="./app.js" defer></script>
-  <script src="./modalPopup.js" defer></script>
-  <script src="./handleUsers.js" defer></script>
+  <script src="./js/app.js" defer></script>
+  <script src="./js/modalPopup.js" defer></script>
+  <script src="./js/handleUsers.js" defer></script>
   <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -111,7 +111,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
                 <ul>
                   <li><a href="./register_page.php">Add User</a></li>
                   <li><button class="trigger selectTrigger">Select User</button></li>
-                  <li><a href="#">Delete User</a></li>
+                  <li><button class="trigger deleteTrigger">Delete User</button></li>
                 </ul>
               </div>
             </div>

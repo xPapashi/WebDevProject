@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $user = $result->fetch_assoc();
 
+    //var_dump(password_hash($_POST['password'], PASSWORD_DEFAULT));
+
     if ($user) {
         if (password_verify($_POST["password"], $user["password"]) &&
             $user["authorisation"] == "1") {
@@ -48,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Page</title>
     <link rel="stylesheet" href="./style/login_style.css" />
-    <script src="./app.js" defer></script>
+    <script src="./js/app.js" defer></script>
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
 <body>

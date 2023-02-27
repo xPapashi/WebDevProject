@@ -7,12 +7,13 @@
     //     $users[] = $row;
     // }
 
-
+    
     if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
-        $sql = "SELECT * FROM users WHERE authorisation='0'";
+        $sql = "SELECT * FROM users";
         $result = $mysqli->query($sql);
 
         $users = array();
+        $selection = $_POST['selection'];
 
         echo "<h3>Users Table:</h3>";
         echo "<table>
@@ -34,8 +35,12 @@
             echo "<td>" . $row["email"] . "</td>";
             echo "<td>" . $row["user"] . "</td>";
             echo "<td>" . $row["course"] . "</td>";
-            echo "<td>" . $row["authorisation"] .
-                "<button class='auth-btn' data-user-id='".$row["id"]."' onclick='userAuth()'>Authorize</button></td>";
+            echo "<td>" . $row["authorisation"];
+            if ($selection === "userAuth") {
+                echo "<button class='auth-btn' data-user-id='".$row["id"]. "'onclick='userAuth()'>Authorize</button></td>";
+            } else {
+                echo "<button class='del-btn' data-user-id='".$row["id"]. "'onclick='userDel()'>Delete User</button></td>";
+            }
             echo "</tr>";
 
         }
@@ -73,5 +78,4 @@
         }
         echo "</table>";
     }
-
 ?>
