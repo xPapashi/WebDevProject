@@ -10,6 +10,43 @@ body {
     min-height: 100vh;
 }
 
+label {
+    display:inline-block;
+    width:180px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+  
+input[type='text']{
+    width:97%;
+    height: 30px;
+    padding:4px;
+    border-radius:5px ;
+    border: 1px #808080 solid;
+}
+input[type='number']{
+    width:50px;
+    padding:4px;
+    border-radius:5px ;
+    border: 1px #808080 solid;
+}
+
+input[type=submit]{
+    background-color: #4DAF98;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5%;
+    transition: 0.5s;
+
+}
+input[type=submit]:hover{
+    background-color: #347868;
+}
+
 /* Navigation */
 
 .header {
@@ -436,6 +473,9 @@ nav ul {
     justify-content: space-evenly;
     overflow-y: hidden;
 }
+.inside-container.lable{
+    padding: 10px;
+}
 
 
 
@@ -483,3 +523,41 @@ nav ul {
     height: 16px;
   }
   
+.box {
+    display: inline-block;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 32px;
+    border: 3px solid hsla(0, 0%, 42%, 0.4);
+    border-radius: 12px;
+    width:100%;
+    overflow-y: hidden;
+}
+
+.box .heading {
+    font-size: 50px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.box .heading span {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.box .heading span::after {
+    position: absolute;
+    left:0;
+    bottom:0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 6px solid #4DAF98;
+    content: "";
+}
+
+.box p {
+    padding-top: 20px;
+}
+.box.submit{
+    width: 20px;
+}
