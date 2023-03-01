@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    require_once("./includes/courses.php");
+
     if (isset($_SESSION["user_id"]) and ($_SESSION["userType"]) != "Admin") {
       header("Location: index.php");
       die();
@@ -68,12 +70,7 @@
                 <div class="courseLabel">
                     <label for="course"><h2>Course:</h2></label>
                 </div>
-                <select name="course" id="course">
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Networks">Networks</option>
-                    <option value="Robotics">Robotics</option>
-                    <option value="AI">AI</option>
-                </select>
+                <?php generateCourses()?>
                 </div>
             </div>
             <br />
