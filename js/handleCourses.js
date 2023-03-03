@@ -6,14 +6,16 @@ const btnCourseDel = document.querySelector(".delCourseTrigger");
 // const answer = document.querySelector('#user-list');
 btnCourseAdd.addEventListener('click', () => {
     getCourses('courseAdd');
-    isActiveCourseAdd = !isActiveCourseAdd;
     isActiveAuth = false;
+    isActiveEnrol = false;
     isActiveDelete = false;
     isActiveCourseDelete = false;
+    isActiveCourseAdd = !isActiveCourseAdd;
 });
 btnCourseDel.addEventListener('click', () => {
   getCourses('courseDelete');
   isActiveAuth = false;
+  isActiveEnrol = false;
   isActiveDelete = false;
   isActiveCourseAdd = false;
   isActiveCourseDelete = !isActiveCourseDelete;
@@ -25,8 +27,8 @@ function getCourses(status) {
   let xml = new XMLHttpRequest();
   xml.onreadystatechange = function() {
     if (xml.readyState === 4 && xml.status === 200 && 
-        isActiveCourseAdd && !isActiveAuth && !isActiveDelete && !isActiveCourseDelete 
-        || isActiveCourseDelete && !isActiveAuth && !isActiveDelete && !isActiveCourseAdd) {
+        isActiveCourseAdd && !isActiveAuth && !isActiveDelete && !isActiveCourseDelete && !isActiveEnrol 
+        || isActiveCourseDelete && !isActiveAuth && !isActiveDelete && !isActiveCourseAdd && !isActiveEnrol) {
       answer.innerHTML = xml.responseText;
     } else {
       answer.innerHTML = "Display Informations";
