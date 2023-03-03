@@ -3,6 +3,7 @@
     $dbname = 'acetraining';
     $mainTable = 'users';
     $coursesTable = 'courses';
+    $enroledUsers = 'enroledStudents';
     $username = 'root';
     $password = '';
     $Qtable = 'quiz';
@@ -44,6 +45,26 @@
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         owner CHAR(255))";
+
+    if ($mysqli->query($query) === TRUE) {
+        // echo "Table Created";
+    } else {
+        echo "Error while creating table: " . $mysqli->error;
+    }
+
+    $query = "CREATE TABLE IF NOT EXISTS $enroledUsers (
+        studentUsername VARCHAR(255) NOT NULL,
+        courseId INT UNSIGNED NOT NULL,
+        authorised TINYINT,
+        FOREIGN KEY (studentUsername)
+            REFERENCES users(email)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT,
+        FOREIGN KEY (courseId)
+            REFERENCES courses(id)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT
+    )";
 
     if ($mysqli->query($query) === TRUE) {
         // echo "Table Created";

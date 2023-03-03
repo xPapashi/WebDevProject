@@ -107,12 +107,13 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
           <div class="right-content">
             <div class="container-user">
               <div class="title-underline">
-                <span>User Details</span>
+                <span>Users</span>
               </div>
               <div class="user-information">
                 <ul>
                   <li><a href="./register_page.php">Add User</a></li>
-                  <li><button class="trigger selectTrigger">Select User</button></li>
+                  <li><button class="trigger authTrigger">Auth User</button></li>
+                  <li><button class="trigger enrolTrigger">Enrol User</button></li>
                   <li><button class="trigger deleteTrigger">Delete User</button></li>
                 </ul>
               </div>
