@@ -121,7 +121,7 @@ function userEnrol() {
           xml.open('POST', 'userEnrol.php', true);
           xml.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
           xml.send('userEmail='+encodeURIComponent(userEmail)+
-                '&courseID=' + encodeURIComponent(courseId));
+              '&courseID=' + encodeURIComponent(courseId));
       })
   });
 }

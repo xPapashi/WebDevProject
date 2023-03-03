@@ -28,7 +28,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") ||
     $email = $letter_forename . $surname . $user_id . '@system.edu';
     $password = $letter_forename . $surname . $user_id;
     $userType = $_POST["userType"];
-    $userCourse = $_POST["course"];
+    list($userCourseId, $userCourse) = explode(',', $_POST['course']);
     $auth = "0";
 
     // Hash password
@@ -44,7 +44,13 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") ||
         // $_SESSION["user_id"] = $user_id;
         // var_dump($_SESSION);
 
-        // echo ("New user re successfully!");
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+    }
+
+    $sql = "INSERT INTO enroledStudents (studentUsername, courseId, authorised) VALUES ('$email', '$userCourseId', '0')";
+
+    if (mysqli_query($mysqli, $sql)) {
 
         if ($_SESSION['userType'] === "Admin") {
             header("Location: admin_page_info.php");

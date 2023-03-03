@@ -9,7 +9,8 @@
         echo "<select name='course' id='course'>";
         while ($row = $result->fetch_assoc()) {
             $title = $row['title'];
-            echo "<option value='$title'>$title</option>";
+            $id = $row['id'];
+            echo "<option value='$id,$title'>$title</option>";
         }
         echo "</select>";
     }
