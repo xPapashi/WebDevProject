@@ -1,12 +1,14 @@
 <?php include 'db.php';?>
 <?php
-$quiz = (int) ($_GET['q']);
 $number = (int) $_GET['n'];
  $query =  "SELECT * FROM questions
                WHERE question_no = $number";
  $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
  $question = $result->fetch_assoc();
  
+  $query = "SELECT * FROM `questions`";
+  $results = $mysqli->query($query) or die ($mysqli->error.__LINE__);
+  $total = $results->num_rows;
 ?>
 <?php
  $query =  "SELECT * FROM  choices WHERE question_no = $number";

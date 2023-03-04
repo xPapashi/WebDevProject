@@ -17,6 +17,8 @@
 
     $_SESSION["user_initials"] = $initials;
     $_SESSION["userType"] = $userType;
+
+
   }
 ?>
 <!DOCTYPE html>
@@ -42,9 +44,9 @@
             <h1 class="heading" ><span id='main_heading'>Quiz Submitted!</span> </h1>
             <p class='quiz-header'> Your Quiz has been submitted. You can find your score below. </p>
             <div class="progress-container">
-            <div class="bar" >01%</div>
+            <div class="bar" ><?php echo $_SESSION['score'];?> %</div>
             </div>
-            <p> Score: 3 </p>
+            <p> Score: <?php echo $_SESSION['score'];?></p>
             <a class='button' href= "quiz.php"> Finish </a>
         </div>
       </div>

@@ -38,47 +38,12 @@
             <div class="container">
                 <div class="box">
                     <div class="heading"><span id='main_heading'>Add a Quiz</span></div>
-                        <form>
-                            <p>
-                                <label> Quiz No. : </label>
-                                <input type="number" name="Quiz_no."/>
-                            </p>
-                            <p>
-                                <label> Question No. : </label>
-                                <input type="number" name="Q_no."/>
-                            </p>
-                            <p>
-                                <label> Question : </label>
-                                <input type="text" name="Qt"/>
-                            </p>
-                            <p>
-                                <label> Choice 1 : </label>
-                                <input type="text" name="choice1"/>
-                            </p>
-                            <p>
-                                <label> Choice 2 : </label>
-                                <input type="text" name="choice2"/>
-                            </p>
-                            <p>
-                                <label> Choice 3 : </label>
-                                <input type="text" name="choice3"/>
-                            </p>
-                            <p>
-                                <label> Choice 4 : </label>
-                                <input type="text" name="choice4"/>
-                            </p>
-                            <p>
-                                <label> Choice 5 : </label>
-                                <input type="text" name="choice5"/>
-                            </p>
-                            <p>
-                                <label> Correct Choice : </label>
-                                <input type="number" name="cc"/>
-                            </p>
-                            <p>
-                                <input type="submit" name="submit" value="Submit"/>
-                            </p>
-                        </form>
+                    <br></br>
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    Select file to upload:
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" value="Upload File" name="submit">
+                    </form>
                     </div>
                 </div>
             </div>
