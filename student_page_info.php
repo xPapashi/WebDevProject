@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    require_once("./includes/userCourse.php");
+
     if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Student")) {
     $mysqli = require __DIR__ . "/db.php";
 
@@ -15,7 +17,7 @@
     $initials = $letter_forename . $letter_surname;
     $fullname = $user["forename"] . " " . $user["surname"];
     $email = strtolower($user["email"]);
-    $course = $user["course"];
+    // $course = $user["course"];
 
     $_SESSION["user_initials"] = $initials;
 
@@ -37,7 +39,6 @@
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
   </head>
   <body onclick="closeNav()">
-    <?php echo $_SESSION["userType"] ?>
     <?php include('./includes/header.php'); ?>
     <div class="main">
       <!-- <?php include('./includes/sidebar.php'); ?> -->
@@ -57,7 +58,8 @@
                     <?php if(isset($user)): ?>
                         <?="<h3>" . htmlspecialchars("Name: " . $fullname) . "</h3>" ?>
                         <?="<p>" . htmlspecialchars("E-mail: " . $email) . "</p>" ?>
-                        <?="<p>" . htmlspecialchars("Course: " . $course) . "</p>" ?>
+                        <!-- <?="<p>" . htmlspecialchars("Course: " . $course) . "</p>" ?> -->
+                        <?=showUserCourse($email)?>
                         <p>Country: United Kingdom</p>
                         <p>City: Liverpool</p>
                     <?php endif; ?>

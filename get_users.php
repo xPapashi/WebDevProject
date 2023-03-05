@@ -11,8 +11,25 @@
     if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
         $selection = $_POST['selection'];
         
-        if ($selection === "userAuth" || $selection === "userDelete" || $selection === "userEnrol") {
-            $sql = "SELECT * FROM users";
+        if ($selection === "userAuth" || 
+        $selection === "userDelete" || 
+        $selection === "userEnrol" || 
+        $selection === "userEnrolAuth") {
+            if ($selection === "userEnrol") {
+            $sql = "SELECT users.id, users.forename, users.surname, users.email, users.user, courses.title, 
+            users.authorisation, enroledStudents.authorised FROM users
+            INNER JOIN enroledStudents ON users.email = enroledStudents.studentUsername
+            INNER JOIN courses ON enroledStudents.courseId = courses.id";
+            } else if ($selection === "userEnrolAuth") {
+                $sql = "SELECT users.id, users.forename, users.surname, users.email, users.user, courses.title, 
+                users.authorisation, enroledStudents.authorised FROM users
+                INNER JOIN enroledStudents ON users.email = enroledStudents.studentUsername
+                INNER JOIN courses ON enroledStudents.courseId = courses.id
+                WHERE enroledStudents.authorised = 0";
+            }else {
+                $sql = "SELECT * FROM users";
+            }
+
             $result = $mysqli->query($sql);
 
             $users = array();
@@ -24,9 +41,12 @@
             <th>Forename</th>
             <th>Surname</th>
             <th>E-mail</th>
-            <th>User Type</th>
-            <th>Course</th>
-            <th>Authorisation</th>
+            <th>User Type</th>";
+            if ($selection === "userEnrol" ||
+                $selection === "userEnrolAuth") {
+            echo "<th>Course</th>";
+            }
+            echo "<th>Authorisation</th>
             </tr>";
 
             while ($row = $result->fetch_assoc()) {
@@ -36,14 +56,24 @@
                 echo "<td>" . $row["surname"] . "</td>";
                 echo "<td>" . $row["email"] . "</td>";
                 echo "<td>" . $row["user"] . "</td>";
-                echo "<td>" . $row["course"] . "</td>";
-                echo "<td>" . $row["authorisation"];
+                if ($selection === "userEnrol" ||
+                    $selection === "userEnrolAuth") {
+                echo "<td>" . $row["title"] . "</td>";
+                }
+                if ($selection === "userEnrolAuth") {
+                    echo "<td>" . $row["authorised"];
+                } else if ($selection != "userEnrol" ||
+                        $selection != "userEnrolAuth"){
+                    echo "<td>" . $row["authorisation"] ;
+                }
                 if ($selection === "userAuth") {
                     echo "<button class='auth-btn' data-user-id='".$row["id"]. "'onclick='userAuth()'>Authorize</button></td>";
                 } else if ($selection === "userDelete") {
                     echo "<button class='del-btn' data-user-id='".$row["id"]. "'onclick='userDel()'>Delete User</button></td>";
                 } else if ($selection === "userEnrol") {
                     echo "<button class='select-btn' data-user-email='".$row["email"]."' onclick='showCourses()'>Select</button></td>";
+                } else if ($selection === "userEnrolAuth") {
+                    echo "<button class='courseAuth-btn' data-user-email='".$row["email"]."' onclick='userCourseAuth()'>Authorise</button></td>";
                 }
                 echo "</tr>";
 

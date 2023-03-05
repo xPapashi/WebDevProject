@@ -10,6 +10,7 @@ btnCourseAdd.addEventListener('click', () => {
     isActiveEnrol = false;
     isActiveDelete = false;
     isActiveCourseDelete = false;
+    isActiveEnrolAuth = false;
     isActiveCourseAdd = !isActiveCourseAdd;
 });
 btnCourseDel.addEventListener('click', () => {
@@ -18,6 +19,7 @@ btnCourseDel.addEventListener('click', () => {
   isActiveEnrol = false;
   isActiveDelete = false;
   isActiveCourseAdd = false;
+  isActiveEnrolAuth = false;
   isActiveCourseDelete = !isActiveCourseDelete;
   console.log(isActiveDelete);
 });
@@ -27,8 +29,9 @@ function getCourses(status) {
   let xml = new XMLHttpRequest();
   xml.onreadystatechange = function() {
     if (xml.readyState === 4 && xml.status === 200 && 
-        isActiveCourseAdd && !isActiveAuth && !isActiveDelete && !isActiveCourseDelete && !isActiveEnrol 
-        || isActiveCourseDelete && !isActiveAuth && !isActiveDelete && !isActiveCourseAdd && !isActiveEnrol) {
+        isActiveCourseAdd && !isActiveAuth && !isActiveDelete && !isActiveCourseDelete && !isActiveEnrol &&
+        !isActiveEnrolAuth || isActiveCourseDelete && !isActiveAuth && !isActiveDelete && !isActiveCourseAdd && 
+        !isActiveEnrol && !isActiveEnrolAuth) {
       answer.innerHTML = xml.responseText;
     } else {
       answer.innerHTML = "Display Informations";
@@ -65,6 +68,8 @@ function courseDel() {
                 if (xml.readyState === 4 && xml.status === 200) {
                     const authorizedRow = event.target.closest('tr');
                     authorizedRow.remove();
+                } else {
+                  answer.innerHTML = xml.responseText;
                 }
             };
             xml.open('POST', 'course_del.php', true);
