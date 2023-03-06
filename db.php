@@ -9,6 +9,7 @@
     $Qtable = 'quiz';
     $Questiontable = 'questions';
     $Qtable = 'choices';
+    $resources = 'resources';
 
     $mysqli = new mysqli($host, $username, $password);
 
@@ -63,6 +64,18 @@
             REFERENCES courses(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
+    )";
+
+    if ($mysqli->query($query) === TRUE) {
+        // echo "Table Created";
+    } else {
+        echo "Error while creating table: " . $mysqli->error;
+    }
+
+    $query = "CREATE TABLE IF NOT EXISTS $resources (
+        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        fileName VARCHAR(255) NOT NULL,
+        uploader VARCHAR(255) NOT NULL
     )";
 
     if ($mysqli->query($query) === TRUE) {
