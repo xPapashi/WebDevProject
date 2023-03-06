@@ -9,11 +9,11 @@
         $result = $mysqli->query($sql);
 
         if ($mysqli->affected_rows == 1) {
-            echo "Success";
+            echo "<span style='color: green;'>You have successfully deleted user id: $id!</span>";
         } else {
-            echo "Error";
+            echo "<span style='color: red;'>Error: ". $mysqli->error . "</span>";
         }
     } else {
-        echo "Something went wrong try again... " . $mysqli->error;
+        echo "<span style='color: red;'>Something went wrong! Error: ". $mysqli->error . "</span>";
     }
 ?>

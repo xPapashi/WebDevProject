@@ -31,7 +31,6 @@
         email varchar(255) NOT NULL UNIQUE,
         password varchar(100) NOT NULL,
         user varchar(100) NOT NULL,
-        course varchar(100) NOT NULL,
         authorisation boolean NOT NULL
     )";
 
@@ -59,11 +58,11 @@
         FOREIGN KEY (studentUsername)
             REFERENCES users(email)
             ON UPDATE CASCADE
-            ON DELETE RESTRICT,
+            ON DELETE CASCADE,
         FOREIGN KEY (courseId)
             REFERENCES courses(id)
             ON UPDATE CASCADE
-            ON DELETE RESTRICT
+            ON DELETE CASCADE
     )";
 
     if ($mysqli->query($query) === TRUE) {

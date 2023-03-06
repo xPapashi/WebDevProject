@@ -2,7 +2,8 @@
 session_start();
 
 if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") ||
-    ($_SESSION["userType"] === "Tutor")) {
+    ($_SESSION["userType"] === "Tutor" || 
+    $_SESSION["userType"] === "Student")) {
     if (empty($_POST["forename"])) {
         die("Forename is required!");
     } else if (empty($_POST["surname"])) {
@@ -29,12 +30,12 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") ||
     $password = $letter_forename . $surname . $user_id;
     $userType = $_POST["userType"];
     list($userCourseId, $userCourse) = explode(',', $_POST['course']);
-    $auth = "0";
+    $auth = "1";
 
     // Hash password
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "UPDATE users SET email='$email', password='$password_hash', user='$userType', course='$userCourse', authorisation='$auth' WHERE id='$user_id'";
+    $sql = "UPDATE users SET email='$email', password='$password_hash', user='$userType', authorisation='$auth' WHERE id='$user_id'";
 
     if (mysqli_query($mysqli, $sql)) {
         // session_start();
@@ -48,7 +49,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") ||
         echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
     }
 
-    $sql = "INSERT INTO enroledStudents (studentUsername, courseId, authorised) VALUES ('$email', '$userCourseId', '0')";
+    $sql = "INSERT INTO enroledStudents (studentUsername, courseId, authorised) VALUES ('$email', '$userCourseId', '$auth')";
 
     if (mysqli_query($mysqli, $sql)) {
 
