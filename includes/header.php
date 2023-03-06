@@ -30,7 +30,7 @@
         <ul class="links">
             <li><a href="./index.php" class="active">Home</a></li>
             <li><a href="#">Timeline</a></li>
-            <li><a href="./course_list.html">Courses</a></li>
+            <li><a href="./html/course_list.html">Courses</a></li>
             <li><a href="./quiz.php">Quizzes</a></li>
             <li><a href="#">Sample Text</a></li>
         </ul>
