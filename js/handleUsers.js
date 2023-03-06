@@ -9,15 +9,17 @@ const btnDel = document.querySelector(".deleteTrigger");
 const answer = document.querySelector('#user-list');
 let userEmail = "";
 
-btnAuth.addEventListener('click', () => {
-    getUsers('userAuth');
-    isActiveDelete = false;
-    isActiveCourseAdd = false;
-    isActiveCourseDelete = false;
-    isActiveEnrol = false;
-    isActiveEnrolAuth = false;
-    isActiveAuth = !isActiveAuth;
-});
+if (btnAuth) {
+  btnAuth.addEventListener('click', () => {
+      getUsers('userAuth');
+      isActiveDelete = false;
+      isActiveCourseAdd = false;
+      isActiveCourseDelete = false;
+      isActiveEnrol = false;
+      isActiveEnrolAuth = false;
+      isActiveAuth = !isActiveAuth;
+  });
+}
 btnEnrol.addEventListener('click', () => {
   getUsers('userEnrol');
   isActiveAuth = false;
@@ -28,25 +30,29 @@ btnEnrol.addEventListener('click', () => {
   isActiveEnrol = !isActiveEnrol;
   console.log(isActiveEnrol);
 });
-btnEnrolAuth.addEventListener('click', () => {
-  getUsers('userEnrolAuth');
-  isActiveAuth = false;
-  isActiveCourseAdd = false;
-  isActiveCourseDelete = false;
-  isActiveEnrol = false;
-  isActiveDelete = false;
-  isActiveEnrolAuth = !isActiveEnrolAuth;
-  console.log(isActiveEnrol);
-});
-btnDel.addEventListener('click', () => {
-  getUsers('userDelete');
-  isActiveAuth = false;
-  isActiveCourseAdd = false;
-  isActiveCourseDelete = false;
-  isActiveEnrol = false;
-  isActiveEnrolAuth = false;
-  isActiveDelete = !isActiveDelete;
-});
+if (btnEnrolAuth) {
+  btnEnrolAuth.addEventListener('click', () => {
+    getUsers('userEnrolAuth');
+    isActiveAuth = false;
+    isActiveCourseAdd = false;
+    isActiveCourseDelete = false;
+    isActiveEnrol = false;
+    isActiveDelete = false;
+    isActiveEnrolAuth = !isActiveEnrolAuth;
+    console.log(isActiveEnrol);
+  });
+}
+if (btnDel) {
+  btnDel.addEventListener('click', () => {
+    getUsers('userDelete');
+    isActiveAuth = false;
+    isActiveCourseAdd = false;
+    isActiveCourseDelete = false;
+    isActiveEnrol = false;
+    isActiveEnrolAuth = false;
+    isActiveDelete = !isActiveDelete;
+  });
+}
 
 
 function getUsers(status) {
@@ -124,7 +130,6 @@ function showCourses() {
 
 function userEnrol() {
   const enrolBtns = document.querySelectorAll('.enrol-btn');
-  console.log(userEmail);
   enrolBtns.forEach(btn => {
       btn.addEventListener('click', function(event) {
           const courseId = this.getAttribute('data-course-id');

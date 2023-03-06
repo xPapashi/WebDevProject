@@ -17,9 +17,23 @@
     $initials = $letter_forename . $letter_surname;
     $fullname = $user["forename"] . " " . $user["surname"];
     $email = strtolower($user["email"]);
-    // $course = $user["course"];
+
+    //Get Course
+    $escapedUserEmail = $mysqli->real_escape_string($user['email']);
+    $sql = "SELECT courseId FROM enroledStudents WHERE studentUsername = '{$escapedUserEmail}'";
+    $result = $mysqli->query($sql);
+
+    while ($row = $result->fetch_assoc()) {
+        $courseId = $row['courseId'];
+        $sql = "SELECT title FROM courses WHERE id = {$courseId}";
+        $result = $mysqli->query($sql);
+
+        $course = $result->fetch_assoc();
+        $_SESSION['course'] = $course['title'];
+    }
 
     $_SESSION["user_initials"] = $initials;
+    $_SESSION["email"] = $email;
 
   } else {
     header("Location: index.php");
@@ -36,9 +50,11 @@
     <title>Student Portal Page</title>
     <link rel="stylesheet" href="./style/student_page_style.css" />
     <script src="./js/app.js" defer></script>
+    <script src="./js/handleUsers.js" defer></script>
+    <script src="./js/handleCourses.js" defer></script>
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
   </head>
-  <body onclick="closeNav()">
+  <body>
     <?php include('./includes/header.php'); ?>
     <div class="main">
       <!-- <?php include('./includes/sidebar.php'); ?> -->
@@ -58,7 +74,6 @@
                     <?php if(isset($user)): ?>
                         <?="<h3>" . htmlspecialchars("Name: " . $fullname) . "</h3>" ?>
                         <?="<p>" . htmlspecialchars("E-mail: " . $email) . "</p>" ?>
-                        <!-- <?="<p>" . htmlspecialchars("Course: " . $course) . "</p>" ?> -->
                         <?=showUserCourse($email)?>
                         <p>Country: United Kingdom</p>
                         <p>City: Liverpool</p>
@@ -69,15 +84,16 @@
             <div class="right-content">
               <div class="container-course">
                 <div class="title-underline">
-                    <span>Course Details</span>
+                    <span>Courses</span>
                 </div>
                 <div class="course-information">
                     <ul>
-                        <li><a href="#">Study Skills</a></li>
-                        <li><a href="#">Library 2023</a></li>
-                        <li><a href="#">Exploration in Computer Science Core 1</a></li>
-                        <li><a href="#">Exploration in Computer Science Core 2</a></li>
-                        <li><a href="#">School of Mathematics, Computer Science and Engineering</a></li>
+                      <li><button class="trigger enrolTrigger">Enrol On Course</button></li>
+                      <li><a href="#">Study Skills</a></li>
+                      <li><a href="#">Library 2023</a></li>
+                      <li><a href="#">Exploration in Computer Science Core 1</a></li>
+                      <li><a href="#">Exploration in Computer Science Core 2</a></li>
+                      <li><a href="#">School of Mathematics, Computer Science and Engineering</a></li>
                     </ul>
                 </div>
               </div>
@@ -94,17 +110,18 @@
               </div>
             </div>
           </div>
+          <?php include('./includes/usersContainer.php'); ?>
           <h3>Sample Text</h3>
           <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
           <p>
             <a href="./logout.php">Logout</a>
           </p>   

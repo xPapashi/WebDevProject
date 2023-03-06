@@ -9,7 +9,7 @@
         $result = $mysqli->query($sql);
 
         if ($mysqli->affected_rows == 1) {
-            echo "<span style='color: green;'>Successfully deleted course id $id</span>";
+            echo "<span style='color: green;'>Successfully deleted course id: $id</span>";
         } else {
             echo "<span style='color: red;'>Error: " . $mysqli->error . "</span>";
         }

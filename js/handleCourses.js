@@ -3,26 +3,29 @@ let isActiveCourseDelete = false;
 const btnCourseAdd = document.querySelector(".addCourseTrigger");
 const btnCourseDel = document.querySelector(".delCourseTrigger");
 
-// const answer = document.querySelector('#user-list');
-btnCourseAdd.addEventListener('click', () => {
-    getCourses('courseAdd');
+if (btnCourseAdd) {
+  btnCourseAdd.addEventListener('click', () => {
+      getCourses('courseAdd');
+      isActiveAuth = false;
+      isActiveEnrol = false;
+      isActiveDelete = false;
+      isActiveCourseDelete = false;
+      isActiveEnrolAuth = false;
+      isActiveCourseAdd = !isActiveCourseAdd;
+  });
+}
+if (btnCourseDel) {
+  btnCourseDel.addEventListener('click', () => {
+    getCourses('courseDelete');
     isActiveAuth = false;
     isActiveEnrol = false;
     isActiveDelete = false;
-    isActiveCourseDelete = false;
+    isActiveCourseAdd = false;
     isActiveEnrolAuth = false;
-    isActiveCourseAdd = !isActiveCourseAdd;
-});
-btnCourseDel.addEventListener('click', () => {
-  getCourses('courseDelete');
-  isActiveAuth = false;
-  isActiveEnrol = false;
-  isActiveDelete = false;
-  isActiveCourseAdd = false;
-  isActiveEnrolAuth = false;
-  isActiveCourseDelete = !isActiveCourseDelete;
-  console.log(isActiveDelete);
-});
+    isActiveCourseDelete = !isActiveCourseDelete;
+    console.log(isActiveDelete);
+  });
+}
 
 
 function getCourses(status) {
@@ -50,7 +53,7 @@ function addCourse() {
       if (this.readyState == 4 && this.status == 200) {
         answer.innerHTML = xml.responseText;
       } else {
-        answer.innerHTML = "Display Informations";
+        answer.innerHTML = xml.responseText;
       }
     };
     xml.open("POST", "create_course.php", true);
