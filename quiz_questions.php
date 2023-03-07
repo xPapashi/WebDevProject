@@ -1,19 +1,3 @@
-<?php include 'db.php';?>
-<?php
-$number = (int) $_GET['n'];
- $query =  "SELECT * FROM questions
-               WHERE question_no = $number";
- $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
- $question = $result->fetch_assoc();
- 
-  $query = "SELECT * FROM `questions`";
-  $results = $mysqli->query($query) or die ($mysqli->error.__LINE__);
-  $total = $results->num_rows;
-?>
-<?php
- $query =  "SELECT * FROM  choices WHERE question_no = $number";
- $choices = $mysqli->query($query) or die($mysqli->error.__LINE__);
-?>
 <?php
   session_start();
 
@@ -35,8 +19,23 @@ $number = (int) $_GET['n'];
     $_SESSION["userType"] = $userType;
 
   }
+  ?>
+<?php
+$number = (int) $_GET['n'];
+$quiz =  (int) $_GET['q']; 
+ $query =  "SELECT * FROM questions WHERE question_no = $number";
+ $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+ $question = $result->fetch_assoc();
+ 
+  $query = "SELECT * FROM `questions`";
+  $results = $mysqli->query($query) or die ($mysqli->error.__LINE__);
+  $total = $results->num_rows;
 
+
+ $query =  "SELECT * FROM  choices WHERE question_no = $number";
+ $choices = $mysqli->query($query) or die($mysqli->error.__LINE__);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,7 +64,7 @@ $number = (int) $_GET['n'];
               <form method="post" action="Qprocess.php">
                 <ul class="inside-container">
                   <?php while ($row = $choices->fetch_assoc()): ?>
-                    <input type="radio" name="choice" value="<?php echo $row["choice_ID"]; ?>"id="1" class="myinput large"/> <?php echo $row["Text"];?>
+                    <input type="radio" name="choice" value="<?php echo $row["choice_ID"]; ?>"id="choice" class="myinput large"/> <?php echo $row["Text"];?>
                     <br></br>
                   <?php endwhile; ?>
                   </ul>

@@ -1,6 +1,8 @@
 <?php
   session_start();
 
+  require_once("./includes/quizBox.php");
+
   if (isset($_SESSION["user_id"])) {
     $mysqli = require __DIR__ . "/db.php";
 
@@ -17,6 +19,8 @@
 
     $_SESSION["user_initials"] = $initials;
     $_SESSION["userType"] = $userType;
+
+    $_SESSION['']
   }
 ?>
 <!DOCTYPE html>
@@ -60,34 +64,7 @@
     <div class="content">
               <div class="heading"><span id='main_heading'>Quizzes</span></div>
               <div class="content-grid">
-                  <div id="quiz1" class="quiz" onclick="openquizbox()" >
-                      <h1 class="quiz-header" id="Q1">Quiz 1</h1>
-                      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
-                      <bk></bk>
-                      <div class="progress-container">
-                      <div class="bar" > 01%</div>
-                      </div>
-                      <div class="button" ><a href="quiz_questions.php?n=1">Start</div></a>
-                  </div>
-                  <!-- <div id="quiz2" class="quiz" onclick="openquizbox()" >
-                      <h1 class="quiz-header" id="Q2">Quiz 2</h1>
-                      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
-                      <bk></bk>
-                      <div class="progress-container">
-                      <div class="bar" >01%</div>
-                      </div>
-                      <div class="button"><a href="quiz_questions.php?n=1">Start</div></a>
-                  </div>
-                  <div id="quiz3" class="quiz" onclick="openquizbox()" >
-                      <h1 class="quiz-header" id="Q3">Quiz 3</h1>
-                      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
-                      <bk></bk>
-                      <div class="progress-container">
-                      <div class="bar" >01%</div>
-                      </div>
-                      <div class="button"><a href="quiz_questions.php?n=1">Start</div></a> 
-                  </div> -->
-                  </div>
+                  <?php generateQuizBox();?>
               </div>
               </div>
           </div>
