@@ -103,11 +103,15 @@ function chooseModalPopup(type) {
 }
 
 // email.addEventListener('click', toggleModal);
-email.addEventListener("click", () => {
-  chooseModalPopup("email");
-});
-password.addEventListener("click", () => {
-  chooseModalPopup("password");
-});
+if (email) {
+  email.addEventListener("click", () => {
+    chooseModalPopup("email");
+  });
+}
+if (password) {
+  password.addEventListener("click", () => {
+    chooseModalPopup("password");
+  }); 
+}
 closeBtn.addEventListener("click", toggleModal);
 window.addEventListener("click", detectClick);

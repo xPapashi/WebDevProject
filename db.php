@@ -7,8 +7,14 @@
     $username = 'root';
     $password = '';
     $Questiontable = 'questions';
+
     $qTable = 'quiz';
     $quizScore= 'scores';
+
+
+    $Qtable = 'choices';
+    $resources = 'resources';
+
 
     $mysqli = new mysqli($host, $username, $password);
 
@@ -31,7 +37,6 @@
         email varchar(255) NOT NULL UNIQUE,
         password varchar(100) NOT NULL,
         user varchar(100) NOT NULL,
-        course varchar(100) NOT NULL,
         authorisation boolean NOT NULL
     )";
 
@@ -59,11 +64,23 @@
         FOREIGN KEY (studentUsername)
             REFERENCES users(email)
             ON UPDATE CASCADE
-            ON DELETE RESTRICT,
+            ON DELETE CASCADE,
         FOREIGN KEY (courseId)
             REFERENCES courses(id)
             ON UPDATE CASCADE
-            ON DELETE RESTRICT
+            ON DELETE CASCADE
+    )";
+
+    if ($mysqli->query($query) === TRUE) {
+        // echo "Table Created";
+    } else {
+        echo "Error while creating table: " . $mysqli->error;
+    }
+
+    $query = "CREATE TABLE IF NOT EXISTS $resources (
+        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        fileName VARCHAR(255) NOT NULL,
+        uploader VARCHAR(255) NOT NULL
     )";
 
     if ($mysqli->query($query) === TRUE) {

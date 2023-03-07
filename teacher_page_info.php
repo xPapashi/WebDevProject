@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once("./includes/userCourse.php");
+
 if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
     $mysqli = require __DIR__ . "/db.php";
 
@@ -15,10 +17,23 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
     $initials = $letter_forename . $letter_surname;
     $fullname = $user["forename"] . " " . $user["surname"];
     $email = strtolower($user["email"]);
-    $course = $user["course"];
+
+    //Get Course
+    $escapedUserEmail = $mysqli->real_escape_string($user['email']);
+    $sql = "SELECT courseId FROM enroledStudents WHERE studentUsername = '{$escapedUserEmail}'";
+    $result = $mysqli->query($sql);
+
+    while ($row = $result->fetch_assoc()) {
+        $courseId = $row['courseId'];
+        $sql = "SELECT title FROM courses WHERE id = {$courseId}";
+        $result = $mysqli->query($sql);
+
+        $course = $result->fetch_assoc();
+        $_SESSION['course'] = $course['title'];
+    }
 
     $_SESSION["user_initials"] = $initials;
-    $_SESSION["course"] = $course;
+    $_SESSION['email'] = $user['email'];
 } else {
     header("Location: index.php");
     die();
@@ -35,14 +50,15 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
     <title>Teacher Portal Page</title>
     <link rel="stylesheet" href="./style/teacher_page_style.css" />
     <script src="./js/app.js" defer></script>
+    <script src="./js/modalPopup.js" defer></script>
     <script src="./js/handleUsers.js" defer></script>
+    <script src="./js/handleCourses.js" defer></script>
     <script src="https://kit.fontawesome.com/031c7b0341.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <?php include('./includes/header.php'); ?>
     <div class="main">
-        <!-- <?php include('./includes/sidebar.php'); ?> -->
         <div class="container">
             <div class="content">
                 <div class="heading"><span>Teacher Portal</span></div>
@@ -59,7 +75,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
                                 <?php if (isset($user)) : ?>
                                     <?= "<h3>" . htmlspecialchars("Name: " . $fullname) . "</h3>" ?>
                                     <?= "<p>" . htmlspecialchars("E-mail: " . $email) . "</p>" ?>
-                                    <?= "<p>" . htmlspecialchars("Course: " . $course) . "</p>" ?>
+                                    <?=showUserCourse($email)?>
                                     <p>Country: United Kingdom</p>
                                     <p>City: Liverpool</p>
                                 <?php endif; ?>
@@ -67,32 +83,30 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
                         </div>
                     </div>
                     <div class="right-content">
-                        <div class="container-course">
-                            <div class="title-underline">
-                                <span>Course Details</span>
-                                <button>Edit</button>
-                            </div>
-                            <div class="course-information">
-                                <ul>
-                                    <li><a href="#">Study Skills</a></li>
-                                    <li><a href="#">Library 2023</a></li>
-                                    <li><a href="#">Exploration in Computer Science Core 1</a></li>
-                                    <li><a href="#">Exploration in Computer Science Core 2</a></li>
-                                    <li><a href="#">School of Mathematics, Computer Science and Engineering</a></li>
-                                </ul>
-                            </div>
+                        <div class="container-user">
+                        <div class="title-underline">
+                            <span>Users</span>
                         </div>
-                        <div class="container-report">
-                            <div class="title-underline">
-                                <span>Overview Reports</span>
-                            </div>
-                            <div class="report-information">
-                                <ul>
-                                    <li><button class="trigger selectTrigger">Authorise Student</button></li>
-                                    <li><a href="#">Set Grades</a></li>
-                                    <li><a href="#">Set Quiz</a></li>
-                                </ul>
-                            </div>
+                        <div class="user-information">
+                            <ul>
+                            <li><button class="trigger authTrigger">Authorise User</button></li>
+                            <li><button class="trigger enrolTrigger">Enrol User On Course</button></li>
+                            <li><button class="trigger enrolAuthTrigger">Auth User on Course</button></li>
+                            <li><button class="trigger">Set Grade</button></li>
+                            </ul>
+                        </div>
+                        </div>
+                        <div class="container-course">
+                        <div class="title-underline">
+                            <span>Course Details</span>
+                        </div>
+                        <div class="course-information">
+                            <ul>
+                            <li><button class="trigger addCourseTrigger">Add Course</button></li>
+                            <li><button class="trigger ">Set Quiz</button></li>
+                            <li><button class="trigger delCourseTrigger">Delete Course</button></li>
+                            </ul>
+                        </div>
                         </div>
                     </div>
                 </div>
