@@ -33,7 +33,7 @@
     $selected_choice = $_POST['choice'];
     $next = $number+1;
 
-    $query ="SELECT * FROM `scores`";
+    $query ="SELECT * FROM scores";
     $R_scores= $mysqli->query($query) or die ($mysqli->error.__LINE__); 
 
     /* gets the total amount of question that are stored in the database */
@@ -42,6 +42,9 @@
     $total = $results->num_rows;
 
     $query = "SELECT 'quiz_ID' FROM `quiz` ";
+    $results = $mysqli->query($query) or die ($mysqli->error.__LINE__);
+    $quizID = $results->fetch_assoc();
+    echo $quizID;
 
     /* this will make sure that the choice that the user selects in the quiz is the 
     correct answer and if it is then it will store it in the database under score */
@@ -56,14 +59,15 @@
     var_dump($_SESSION['user_id']);
 
     if($correct_choice == $selected_choice){
-        $sql = "INSERT INTO scores(Student_id,Quiz_id) VALUES ('{$_SESSION['user_id']}','') ";
-        $result = $mysqli->query($sql) or die($mysqli->error.__LINE__);
+        $_SESSION['score']= +1;
     }
 
     /* this will check for the total number against the question number that the user 
     is on so that the quiz ends when it runs out of questions in the database */
     if ($number == $total){
         header("Location: final.php");
+        $sql = "INSERT INTO scores(Student_id,Quiz_id,score) VALUES ('{$_SESSION['user_id']}','$quizID','{$_SESSION['score']}') ";
+        $result = $mysqli->query($sql) or die($mysqli->error.__LINE__);
         exit();
     } else{
         header("Location: quiz_questions.php?n=".$next);

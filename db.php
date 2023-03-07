@@ -6,10 +6,15 @@
     $enroledUsers = 'enroledStudents';
     $username = 'root';
     $password = '';
-    $Qtable = 'quiz';
     $Questiontable = 'questions';
+
+    $qTable = 'quiz';
+    $quizScore= 'scores';
+
+
     $Qtable = 'choices';
     $resources = 'resources';
+
 
     $mysqli = new mysqli($host, $username, $password);
 
@@ -83,6 +88,42 @@
     } else {
         echo "Error while creating table: " . $mysqli->error;
     }
+
+    $query = "CREATE TABLE IF NOT EXISTS $qTable (
+        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        fileName VARCHAR(255) NOT NULL,
+		uploader VARCHAR(255) NOT NULL,
+        FOREIGN KEY (uploader)
+            REFERENCES users(email)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+    )";
+
+    if ($mysqli->query($query) === TRUE) {
+        // echo "Table Created";
+    } else {
+        echo "Error while creating table: " . $mysqli->error;
+    }
+
+    $query = "CREATE TABLE IF NOT EXISTS $quizScore (
+        studentUsername VARCHAR(255) NOT NULL,
+        score INT NOT NULL,
+        quizID INT UNSIGNED NOT NULL,
+        FOREIGN KEY (studentUsername)
+            REFERENCES users(email)
+            ON UPDATE CASCADE,
+        FOREIGN KEY (quizID)
+            REFERENCES quiz(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+    )";
+
+    if ($mysqli->query($query) === TRUE) {
+        // echo "Table Created";
+    } else {
+        echo "Error while creating table: " . $mysqli->error;
+    }
+
 
     return $mysqli;
 ?>
