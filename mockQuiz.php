@@ -67,7 +67,7 @@
 
 
 //TESTING SHIT OUT
-    if (isset($_SESSION["user_id"])) {
+if (isset($_SESSION["user_id"])) {
     $mysqli = require __DIR__ . "/db.php";
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
 
@@ -94,41 +94,47 @@
         
     }
     
-    $lines = file("./quizzes/$fileName");
-    function readQuizFromFile($fileName) {
+    $lines = file("quizzes/$fileName");
+    function readQuizFromFile($fileName, $currentQuestion = 1) {
         $quizFile = file_get_contents('./quizzes/'.$fileName);
+        $quizzes = preg_split('/(?<=Quiz\d)\n/', $quizFile, -1, PREG_SPLIT_NO_EMPTY);
     
-        $quizzes = explode("\n\n", $quizFile);
+        foreach ($quizzes as $quiz) {
+            $lines = explode("\n", $quiz);
+            $title = array_shift($lines);
     
-            foreach ($quizzes as $quiz) {
-                $lines = explode("\n", $quiz);
+            echo "<div class='questions'>\n";
     
-                $title = array_shift($lines);
-    
-                echo "<div class='question'>\n";
-    
-                $questionNum = 1;
-                foreach ($lines as $line) {
-                    if (preg_match('/^\d+.\s/', $line)) {
-                        $question = preg_replace('/^\d+.\s/', '', $line);
-    
-                        echo "<div class='question'>\n";
-                        echo "<h3>Question $questionNum</h3>\n";
-                        echo "<p>$question</p>\n";
-                        $questionNum++;
-                    } elseif (preg_match('/^\*/', $line)) {
-                        $answer = preg_replace('/^\*/', '', $line);
-                        echo "<div class='answer correct'>$answer</div>\n";
-                    } elseif (preg_match('/^-\s/', $line)) {
-                        $answer = preg_replace('/^-\s/', '', $line);
-                        echo "<div class='answer'>$answer</div>\n";
+            $questionNum = 1;
+            foreach ($lines as $line) {
+                if (preg_match('/^(\d+)\.\s(.+)/', $line, $matches)) {
+                    if ($questionNum != 1) {
+                        echo "</div>\n"; // close previous question div
                     }
+                    $question = $matches[2];
+                    echo "<div class='question'>\n";
+                    echo "<h3>Question $questionNum</h3>\n";
+                    echo "<p>$question</p>\n";
+                    $questionNum++;
+                } elseif (preg_match('/^\*/', $line)) {
+                    $answer = preg_replace('/^\*/', '', $line);
+                    echo "<div class='answer correct'>$answer</div>\n";
+                } elseif (preg_match('/^-\s/', $line)) {
+                    $answer = preg_replace('/^-\s/', '', $line);
+                    echo "<div class='answer'>$answer</div>\n";
+                } elseif (preg_match('/^Quiz(\d+)/', $line, $matches)) {
+                    // Stop reading the file when the next quiz is encountered
+                    break;
                 }
-                echo "</div>\n";
             }
+            echo "</div>\n"; // close last question div
+            // Add a button to move to the next question when the quiz ends
+            $nextQuestionNum = $currentQuestion + 1;
+            $nextUrl = "mockQuiz.php?q=Quiz2&n=1"; // change the quiz and question number
+            echo "<button class='next-btn' onclick='window.location.href=\"$nextUrl\"'>Next Question</button>\n";
         }
-  }
-  
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -150,8 +156,7 @@
                 <div class="box">
                     <div class="heading"><span id='main_heading'>Quiz <?= htmlspecialchars($id) ?> </span></div>
                     <br></br>
-                    <?php readQuizFromFile($fileName); ?>
-
+                    <?php readQuizFromFile($fileName, 1); ?>
                     </div>
                 </div>
             </div>

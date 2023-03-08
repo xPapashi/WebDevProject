@@ -85,9 +85,7 @@
                 $sql = "SELECT * FROM courses";
                 $result = $mysqli->query($sql);
     
-                $courses = array();
-    
-                
+                $courses = array();   
     
                 // Display the list of courses in a hidden div
                 echo "<div id='courses-list' style='display:none'>";
