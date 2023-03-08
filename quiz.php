@@ -3,7 +3,8 @@
 
   require_once("./includes/quizBox.php");
 
-  if (isset($_SESSION["user_id"])) {
+  if (isset($_SESSION["user_id"]) && ($_SESSION["userType"] === "Tutor")
+    || ($_SESSION["userType"] === "Admin")) {
     $mysqli = require __DIR__ . "/db.php";
 
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
@@ -19,8 +20,9 @@
 
     $_SESSION["user_initials"] = $initials;
     $_SESSION["userType"] = $userType;
-
-    $_SESSION['']
+  } else {
+    header("Location: index.php");
+    die();
   }
 ?>
 <!DOCTYPE html>

@@ -1,7 +1,8 @@
 <?php
   session_start();
 
-  if (isset($_SESSION["user_id"])) {
+  if (isset($_SESSION["user_id"]) && ($_SESSION["userType"] === "Tutor")
+    || ($_SESSION["userType"] === "Admin")) {
     $mysqli = require __DIR__ . "/db.php";
 
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
@@ -20,6 +21,9 @@
     $_SESSION["userType"] = $userType;
 
     $_SESSION["email"]= $email;
+  } else {
+    header("Location: index.php");
+    die();
   }
 ?>
 <!DOCTYPE html>
