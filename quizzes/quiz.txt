@@ -1,4 +1,3 @@
-Quiz1
 1. What is the capital of France?
 * Paris
 - Madrid
@@ -9,14 +8,12 @@ Quiz1
 - George Orwell
 * J.D. Salinger
 - F. Scott Fitzgerald
-
-Quiz2
-1. What is the largest planet in our solar system?
+3. What is the largest planet in our solar system?
 * Jupiter
 - Saturn
 - Neptune
 - Uranus
-2. Who directed the movie "Jaws"?
+4. Who directed the movie "Jaws"?
 - Steven Spielberg
 - Martin Scorsese
 * Alfred Hitchcock
