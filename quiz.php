@@ -3,8 +3,7 @@
 
   require_once("./includes/quizBox.php");
 
-  if (isset($_SESSION["user_id"]) && ($_SESSION["userType"] === "Tutor")
-    || ($_SESSION["userType"] === "Admin")) {
+  if (isset($_SESSION["user_id"])) {
     $mysqli = require __DIR__ . "/db.php";
 
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
@@ -20,6 +19,9 @@
 
     $_SESSION["user_initials"] = $initials;
     $_SESSION["userType"] = $userType;
+    @$quizID = $_SESSION['quizID'];
+    @$score = $_SESSION['finalScore'];
+    
   } else {
     header("Location: index.php");
     die();
@@ -66,7 +68,7 @@
     <div class="content">
               <div class="heading"><span id='main_heading'>Quizzes</span></div>
               <div class="content-grid">
-                  <?php generateQuizBox();?>
+                  <?php generateQuizBox($user['email']);?>
               </div>
               </div>
           </div>

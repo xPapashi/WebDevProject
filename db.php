@@ -109,6 +109,7 @@
         studentUsername VARCHAR(255) NOT NULL,
         score INT NOT NULL,
         quizID INT UNSIGNED NOT NULL,
+        questionNum INT NOT NULL,
         FOREIGN KEY (studentUsername)
             REFERENCES users(email)
             ON UPDATE CASCADE,

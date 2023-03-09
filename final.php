@@ -17,8 +17,56 @@
 
     $_SESSION["user_initials"] = $initials;
     $_SESSION["userType"] = $userType;
+    
+    $questionNum = $_SESSION['questionNum'];
 
+    function count_correct_answers($arr) {
+      $count = 0;
+      foreach ($arr as $key => $value) {
+        if (strpos($key, 'correct') === 0 && !empty(trim($value))) {
+          $count++;
+        }
+      }
+      return $count;
+    }
 
+    extract($_POST);
+    $score = count_correct_answers($_POST);
+
+    function processQuiz($questionNum, $score) {
+      $numQuestions = $questionNum;
+
+      echo $score;
+
+    }
+    function percentage($score,$questionNum){
+      $percentage = ($score/$questionNum)*100;
+      echo $percentage;
+      return $percentage; 
+    }
+
+    function saveQuizScore($score) {
+      $mysqli = require __DIR__ . "/db.php";
+      $qnum = $_SESSION['questionNum'];
+
+      if (isset($_SESSION["user_id"])) {
+
+          $email = $_SESSION['email'];
+          $quizID = $_SESSION['quizID'];
+          $_SESSION['finalScore'] = $score;
+          
+          $sql = "INSERT INTO scores (studentUsername, score, quizID, questionNum) VALUES ('$email', '$score', '$quizID', '$qnum')";
+          $result = $mysqli->query($sql);
+
+          if ($mysqli->affected_rows == 1) {
+              echo "<span style='color: green;'>You have successfully deleted user id:</span>";
+          } else {
+              echo "<span style='color: red;'>Error: ". $mysqli->error . "</span>";
+          }
+      } else {
+          echo "<span style='color: red;'>Something went wrong! Error: ". $mysqli->error . "</span>";
+      }
+    }
   }
 ?>
 <!DOCTYPE html>
@@ -44,10 +92,10 @@
             <h1 class="heading" ><span id='main_heading'>Quiz Submitted!</span> </h1>
             <p class='quiz-header'> Your Quiz has been submitted. You can find your score below. </p>
             <div class="progress-container">
-            <div class="bar" ><?php echo $_SESSION['score'];?> %</div>
+            <div class="bar" style='width: <?php percentage($score, $questionNum);?>%;'><?php percentage($score, $questionNum);?>%</div>
             </div>
-            <p> Score: <?php echo $_SESSION['score'];?></p>
-            <a class='button' href= "quiz.php"> Finish </a>
+            <p> Score: <?php processQuiz($questionNum, $score) ?></p>
+            <a class='button' onclick="<?php saveQuizScore($score); ?>" href='quiz.php?'> Finish </a>
         </div>
       </div>
     </div>

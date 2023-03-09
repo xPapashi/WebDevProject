@@ -65,30 +65,6 @@ function closequizbox(){
 }
 
 
-document.getElementById("quizForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // prevent form submission
-    var formData = new FormData(document.getElementById("quizForm")); // create form data object
-    // make AJAX request to upload.php file
-    var request = new XMLHttpRequest();
-    request.open("POST", "upload.php");
-    request.send(formData);
-    request.onreadystatechange = function() {
-      if (request.readyState === 4 && request.status === 200) {
-        alert(request.responseText); // show response message
-      }
-    }
-  });
 
-
-const mysql = require('mysql');
-const fs = require('fs');
-
-// Connect to the MySQL database
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'acetraining'
-});
 
 
