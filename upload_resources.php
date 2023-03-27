@@ -9,13 +9,15 @@ if (isset($_POST['submit'])){
         
         $target = "./resources/$name";
         $uploader = $_SESSION['email'];
+        $uploadDate = $_POST['uploadDate'];
+        list($userCourseId, $userCourse) = explode(',', $_POST['course']);
 
         $extension = substr($name, -3);
 
         if ($size <= 5000000) {
             if (move_uploaded_file($tmp_name, $target)) {
                 echo "<p style='color: green'>File $name has been successfully uploaded!</p>";
-                $sql = "INSERT INTO resources(filename, uploader) VALUE ('$name', '$uploader')";
+                $sql = "INSERT INTO resources(filename, uploader, uploadDate, courseId) VALUE ('$name', '$uploader', DATE('$uploadDate'), '$userCourseId')";
                 $result = $mysqli->query($sql);
 
             } else {
@@ -46,6 +48,7 @@ if (isset($_POST['submit'])){
         echo "<td>" . $row['id'] . "</td>";
         echo "<td>" . $row['fileName'] . "</td>";
         echo "<td>" . $row['uploader'] . "</td>";
+        echo "<td>" . $row['uploadDate'] . "</td>";
         echo "</tr>";
     }
     echo "</table>";
