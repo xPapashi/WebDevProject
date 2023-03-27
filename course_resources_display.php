@@ -49,8 +49,6 @@ session_start();
       $weeksResult = $mysqli->query($sql);
     
       // // Retrieve resources for the current course
-      // $sql = "SELECT * FROM resources WHERE courseId = (SELECT id FROM courses WHERE title = '$escapedCourseTitle')";
-      // $result = $mysqli->query($sql);
     
       while ($week = $weeksResult->fetch_assoc()) {
       $weekId = $week['id'];
@@ -63,7 +61,6 @@ session_start();
       echo "<div class='resourceDescription'>$weekDescription</div>";
 
       // Retrieve resources for the current week
-      // $sql = "SELECT * FROM weeksresources WHERE weekId = $weekId";
 
       $sql = "SELECT resources.fileName, resources.id FROM resources
             INNER JOIN weeksresources ON resources.id = weeksresources.resourceId
