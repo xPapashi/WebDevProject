@@ -6,14 +6,15 @@
     $enroledUsers = 'enroledStudents';
     $username = 'root';
     $password = '';
-    $Questiontable = 'questions';
+    
+    $resources = 'resources';
+    $weeks = 'weeks';
+    $weeksResources = "weeksResources";
 
+    $Questiontable = 'questions';
     $qTable = 'quiz';
     $quizScore= 'scores';
-
-
     $Qtable = 'choices';
-    $resources = 'resources';
 
 
     $mysqli = new mysqli($host, $username, $password);
@@ -80,7 +81,49 @@
     $query = "CREATE TABLE IF NOT EXISTS $resources (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         fileName VARCHAR(255) NOT NULL,
-        uploader VARCHAR(255) NOT NULL
+        uploader VARCHAR(255) NOT NULL,
+        uploadDate DATE NOT NULL,
+        courseId INT UNSIGNED NOT NULL,
+        FOREIGN KEY (courseId)
+            REFERENCES courses(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+    )";
+
+    if ($mysqli->query($query) === TRUE) {
+        // echo "Table Created";
+    } else {
+        echo "Error while creating table: " . $mysqli->error;
+    }
+
+    $query = "CREATE TABLE IF NOT EXISTS $weeks (
+        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        courseId INT UNSIGNED NOT NULL,
+        heading VARCHAR(255) NOT NULL,
+        description text NOT NULL,
+        FOREIGN KEY (courseId)
+            REFERENCES courses(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+    )";
+
+    if ($mysqli->query($query) === TRUE) {
+        // echo "Table Created";
+    } else {
+        echo "Error while creating table: " . $mysqli->error;
+    }
+
+    $query = "CREATE TABLE IF NOT EXISTS $weeksResources (
+        weekId INT UNSIGNED PRIMARY KEY,
+        resourceId INT UNSIGNED NOT NULL,
+        FOREIGN KEY (weekId)
+            REFERENCES weeks(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE,
+        FOREIGN KEY (resourceId)
+            REFERENCES resources(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
     )";
 
     if ($mysqli->query($query) === TRUE) {

@@ -14,11 +14,11 @@
     function getUserTypeCourse($user)
     {
         if ($user === "Admin") {
-            return "./course_resources.php";
+            return "./course_resources_display.php";
         } else if ($user === "Tutor") {
-            return "./course_resources.php";
+            return "./course_resources_display.php";
         } else if ($user === "Student") {
-            return "./course_list.php";
+            return "./course_resources_display.php";
         }
     }
 ?>

@@ -180,7 +180,7 @@ body {
 
 .resourceContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     background-color:#D9D9D9;
     padding: 10px;

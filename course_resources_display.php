@@ -3,40 +3,8 @@ session_start();
 
     require_once("./includes/userCourse.php");
 
-    function generateCourses() {
-      $mysqli = require __DIR__ . "/db.php";
-    
-      $user_id = $_SESSION['user_id'];
-
-      $sql = "SELECT courses.* FROM courses JOIN enroledStudents ON courses.id = enroledStudents.courseId 
-      WHERE enroledStudents.studentUsername = (SELECT email FROM users WHERE id = $user_id) 
-      AND enroledStudents.authorised = 1";
-  
-      $result = $mysqli->query($sql);
-
-      echo "<select name='course' id='course'>";
-      while ($row = $result->fetch_assoc()) {
-          $title = $row['title'];
-          $id = $row['id'];
-          echo "<option value='$id,$title'>$title</option>";
-      }
-      echo "</select>";
-      // Fetch the weeks for the selected course and display them as a dropdown list
-        $courseId = $_SESSION['courseId'];
-        $sql = "SELECT * FROM weeks WHERE courseId = $courseId";
-        $result = $mysqli->query($sql);
-
-        echo "<select name='week' id='week'>";
-        while ($row = $result->fetch_assoc()) {
-          $heading = $row['heading'];
-          $id = $row['id'];
-          echo "<option value='$id'>$heading</option>";
-        }
-        echo "</select>";
-      }
-
-  if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") 
-  || ($_SESSION["userType"] === "Tutor")) {
+    if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") 
+    || ($_SESSION["userType"] === "Tutor")) {
     $mysqli = require __DIR__ . "/db.php";
 
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
@@ -67,11 +35,55 @@ session_start();
 
     $_SESSION["user_initials"] = $initials;
     $_SESSION["email"] = $email;
-
   } else {
     header("Location: index.php");
     die();
   }
+
+  function displayResources() {
+    if (isset($_SESSION["user_id"])) {
+      $mysqli = require __DIR__ . "/db.php";
+      $escapedCourseTitle = $mysqli->real_escape_string($_SESSION['course']);
+
+      $sql = "SELECT * FROM weeks WHERE courseId = (SELECT id FROM courses WHERE title = '$escapedCourseTitle')";
+      $weeksResult = $mysqli->query($sql);
+    
+      // // Retrieve resources for the current course
+      // $sql = "SELECT * FROM resources WHERE courseId = (SELECT id FROM courses WHERE title = '$escapedCourseTitle')";
+      // $result = $mysqli->query($sql);
+    
+      while ($week = $weeksResult->fetch_assoc()) {
+      $weekId = $week['id'];
+      $weekHeading = $week['heading'];
+      $weekDescription = $week['description'];
+
+      // Display week heading and description
+      echo "<div class='resourceContainer'>";
+      echo "<div class='resourceHeading'>$weekHeading</div>";
+      echo "<div class='resourceDescription'>$weekDescription</div>";
+
+      // Retrieve resources for the current week
+      // $sql = "SELECT * FROM weeksresources WHERE weekId = $weekId";
+
+      $sql = "SELECT resources.fileName, resources.id FROM resources
+            INNER JOIN weeksresources ON resources.id = weeksresources.resourceId
+            WHERE weekId = '$weekId'";
+
+      $resourcesResult = $mysqli->query($sql);
+
+      while ($resource = $resourcesResult->fetch_assoc()) {
+        $fileName = $resource['fileName'];
+
+        // Display resource information
+        echo "<div class='resources'>";
+        echo "<a href='resources/$fileName'>$fileName</a>";
+        echo "</div>";
+      }
+
+      echo "</div>";
+    }
+  }
+}
 ?>
 
 
@@ -95,21 +107,8 @@ session_start();
           <div class="heading"><span>Course Resources</span></div>
           <div class="topContents">
             <p>Course Progress: 0%</p>
-            <button class="addContentButton">Add more Resources</button>
-          </div>
-          <div class="resourceContainer">
-            <form
-              action="./upload_resources.php"
-              method="POST"
-              enctype="multipart/form-data"
-            >
-              <input type="file" name="uploadFile" />
-              <label for="uploadDate">Upload Date:</label>
-              <input type="date" name="uploadDate" id="uploadDate">
-              <?php echo generateCourses() ?>
-              <button type="submit" name="submit">Upload file</button>
-            </form>
-          </div>
+            </div>
+            <?php echo displayResources(); ?>
         </div>
       </div>
     </div>
