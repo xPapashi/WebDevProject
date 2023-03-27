@@ -11,6 +11,7 @@ if (isset($_POST['submit'])){
         $uploader = $_SESSION['email'];
         $uploadDate = $_POST['uploadDate'];
         list($userCourseId, $userCourse) = explode(',', $_POST['course']);
+        $week = $_POST['week'];
 
         $extension = substr($name, -3);
 
@@ -18,6 +19,15 @@ if (isset($_POST['submit'])){
             if (move_uploaded_file($tmp_name, $target)) {
                 echo "<p style='color: green'>File $name has been successfully uploaded!</p>";
                 $sql = "INSERT INTO resources(filename, uploader, uploadDate, courseId) VALUE ('$name', '$uploader', DATE('$uploadDate'), '$userCourseId')";
+                $result = $mysqli->query($sql);
+
+                $sql = "SELECT id FROM resources WHERE fileName = '$name'";
+                $result = $mysqli->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $resourceId = $row['id'];
+                }
+                $sql = "INSERT INTO weeksresources(weekId, resourceId) VALUES ('$week', '$resourceId')";
                 $result = $mysqli->query($sql);
 
             } else {

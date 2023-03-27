@@ -114,7 +114,7 @@
     }
 
     $query = "CREATE TABLE IF NOT EXISTS $weeksResources (
-        weekId INT UNSIGNED PRIMARY KEY,
+        weekId INT UNSIGNED NOT NULL,
         resourceId INT UNSIGNED NOT NULL,
         FOREIGN KEY (weekId)
             REFERENCES weeks(id)
