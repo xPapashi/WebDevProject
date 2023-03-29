@@ -69,7 +69,7 @@
               <div class="heading"><span id='main_heading'>Quizzes</span></div>
               <div class="content-grid">
                   <?php generateQuizBox($user['email']);?>
-                  <?php takeQuiz($user['email'], $quizID, $score, $questionNum); ?>
+                  <?php takeQuiz($user['email'], $quizID, $score); ?>
               </div>
               </div>
           </div>

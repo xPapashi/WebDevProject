@@ -44,12 +44,14 @@
         }
       }
 
-      function takeQuiz($userEmail, $quizID, $score, $questionNum) {
+      function takeQuiz($userEmail, $quizID, $score) {
         $mysqli = require __DIR__ . "../../db.php";
     
         // Check if the user has already taken this quiz
         $sql = "SELECT * FROM scores WHERE studentUsername = '$userEmail' AND quizID = '$quizID'";
         $result = $mysqli->query($sql);
+        $row = $result->fetch_assoc();
+        $questionNum = $row['questionNum'];
     
         if ($result->num_rows > 0) {
             // User has already taken this quiz, update their score
