@@ -24,12 +24,13 @@
 ?>
 
 <?php while ($course = $result->fetch_assoc()): ?>
+    <?php $link = "?courseId=" . $course['id']; ?>
     <div class="container-courses">
         <div class="course-img">
             <span>Insert IMG</span>
         </div>
         <div class="course-info">
-            <a href="<?php echo getUserTypeCourse($userType); ?>"><?= $course["title"] ?></a>
+            <a href="<?php echo getUserTypeCourse($userType) . $link; ?>"><?= $course["title"] ?></a>
         </div>
     </div>
 <?php endwhile; ?>

@@ -15,6 +15,21 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
   $initials = $letter_forename . $letter_surname;
   $_SESSION['email'] = $user['email'];
 
+  //Get Course
+  $escapedUserEmail = $mysqli->real_escape_string($user['email']);
+  $sql = "SELECT courseId FROM enroledStudents WHERE studentUsername = '{$escapedUserEmail}'";
+  $result = $mysqli->query($sql);
+
+  while ($row = $result->fetch_assoc()) {
+      $courseId = $row['courseId'];
+      $sql = "SELECT title FROM courses WHERE id = {$courseId}";
+      $result = $mysqli->query($sql);
+
+      $course = $result->fetch_assoc();
+      $_SESSION['course'] = $course['title'];
+      $_SESSION['courseId'] = $courseId;
+  }
+
   if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['email'])) {
       $email = $_POST["email"];
@@ -126,7 +141,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
               <div class="course-information">
                 <ul>
                   <li><button class="trigger addCourseTrigger">Add Course</button></li>
-                  <li><a href="#">Select Course</a></li>
+                  <li><a href='./course_resources.php'>Add Resource</a></li>
                   <li><button class="trigger delCourseTrigger">Delete Course</button></li>
                 </ul>
               </div>

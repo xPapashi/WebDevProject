@@ -189,6 +189,29 @@ body {
     margin-bottom: 10px;
 }
 
+.resourceHeading {
+    font-size: 24px;
+}
+
+.resourceDescription {
+    padding-bottom: 10px;
+}
+
+.resources a {
+    text-decoration: none;
+    color: #4DAF98;
+}
+
+.resources a:hover {
+    text-decoration: underline;
+    color: #265a4e;
+}
+
+
+.resources p{
+    padding: 0;
+}
+
 button{
     border: 3px solid hsla(0, 0%, 42%, 0.4);
     border-radius: 12px;
