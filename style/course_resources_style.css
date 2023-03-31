@@ -207,10 +207,10 @@ body {
     color: #265a4e;
 }
 
-
-.resources p{
-    padding: 0;
+.resources .date {
+    color: #4DAF98;
 }
+
 
 button{
     border: 3px solid hsla(0, 0%, 42%, 0.4);

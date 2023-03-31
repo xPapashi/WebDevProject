@@ -14,6 +14,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
   $letter_surname = substr($user["surname"], 0, 1);
   $initials = $letter_forename . $letter_surname;
   $_SESSION['email'] = $user['email'];
+  $_SESSION['initials'] = $initials;
 
   //Get Course
   $escapedUserEmail = $mysqli->real_escape_string($user['email']);
@@ -141,6 +142,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin")) {
               <div class="course-information">
                 <ul>
                   <li><button class="trigger addCourseTrigger">Add Course</button></li>
+                  <li><a href='./courseWeek_add.php'>Add Week for Course</a></li>
                   <li><a href='./course_resources.php'>Add Resource</a></li>
                   <li><button class="trigger delCourseTrigger">Delete Course</button></li>
                 </ul>

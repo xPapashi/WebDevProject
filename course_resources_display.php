@@ -86,7 +86,7 @@ session_start();
         if ($current_date >= $downDate) {
           echo "<a href='resources/$fileName'>$fileName</a>";
         } else {
-          echo "</p>This resource will be available for download on " . convertDate($downDate) . "</p>";
+          echo "<p>This resource will be available for download on <span class='date'>" . convertDate($downDate) . "</span></p>";
         }
         echo "</div>";
       }
