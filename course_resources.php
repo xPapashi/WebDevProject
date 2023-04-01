@@ -14,18 +14,27 @@ session_start();
   
       $result = $mysqli->query($sql);
 
+      echo "Courses: ";
+
       echo "<select name='course' id='course'>";
       while ($row = $result->fetch_assoc()) {
           $title = $row['title'];
           $id = $row['id'];
           echo "<option value='$id,$title'>$title</option>";
       }
+    }
+
+    function generateWeeks() {
+      $mysqli = require __DIR__ . "/db.php";
+      
       echo "</select>";
       // Fetch the weeks for the selected course and display them as a dropdown list
         $courseId = $_SESSION['courseId'];
         $sql = "SELECT * FROM weeks WHERE courseId = $courseId";
         $result = $mysqli->query($sql);
 
+        echo "Week: ";
+      
         echo "<select name='week' id='week'>";
         while ($row = $result->fetch_assoc()) {
           $heading = $row['heading'];
@@ -33,7 +42,7 @@ session_start();
           echo "<option value='$id'>$heading</option>";
         }
         echo "</select>";
-      }
+    }
 
   if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") 
   || ($_SESSION["userType"] === "Tutor")) {
@@ -95,20 +104,36 @@ session_start();
           <div class="heading"><span>Course Resources</span></div>
           <div class="topContents">
             <p>Course Progress: 0%</p>
-            <button class="addContentButton">Add more Resources</button>
           </div>
           <div class="resourceContainer">
             <form
-              action="./upload_resources.php"
-              method="POST"
-              enctype="multipart/form-data"
-            >
-              <input type="file" name="uploadFile" />
-              <label for="uploadDate">Upload Date:</label>
-              <input type="date" name="uploadDate" id="uploadDate">
-              <?php echo generateCourses() ?>
-              <button type="submit" name="submit">Upload file</button>
-            </form>
+                action="./upload_resources.php"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <input type="file" name="uploadFile" />
+                <br><br>
+                <div class="secondLineInputs">
+                  <div class="dateEntry">
+                    <label for="uploadDate">Upload Date:</label>
+                    <input type="date" name="uploadDate" id="uploadDate">
+                  </div>
+                  <div class="courseEntry">
+                    <?php echo generateCourses() ?>
+                  </div>
+                  <style>/*the div weeksEntry is not showing on the 
+                  this needs fixing and add the uploaded message under the resources
+                  box not on a seperate page
+                  */</style>
+                  <div class="weeksEntry">
+                    <?php echo generateWeeks() ?>
+                  </div>
+                </div>
+                <br><br>
+                <div class="UploadFileButton">
+                  <button type="submit" name="submit">Upload file</button>
+                </div>           
+              </form>
           </div>
         </div>
       </div>

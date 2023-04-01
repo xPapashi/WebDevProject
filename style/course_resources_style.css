@@ -189,6 +189,10 @@ body {
     margin-bottom: 10px;
 }
 
+.resourceContents{
+    display: flex;
+}
+
 button{
     border: 3px solid hsla(0, 0%, 42%, 0.4);
     border-radius: 12px;
@@ -223,6 +227,15 @@ button{
 
 .topContents{
     display: flex;
-    justify-content: space-between;
     margin: 20px 10px;
+}
+
+.UploadFileButton{
+    display: flex;
+    justify-content: center;
+
+}
+
+.secondLineInputs{
+    display: flex;
 }

@@ -3,8 +3,7 @@ session_start();
 
     require_once("./includes/userCourse.php");
 
-    if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") 
-    || ($_SESSION["userType"] === "Tutor")) {
+    if (isset($_SESSION["user_id"])) {
     $mysqli = require __DIR__ . "/db.php";
 
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
