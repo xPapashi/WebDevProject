@@ -113,6 +113,6 @@ session_start();
         </div>
       </div>
     </div>
-    <script src="./js/rescources_functions.js"></script>
+    <script src="./js/rescources_functions.js" defer></script>
   </body>
 </html>

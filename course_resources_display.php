@@ -3,8 +3,7 @@ session_start();
 
     require_once("./includes/userCourse.php");
 
-    if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") 
-    || ($_SESSION["userType"] === "Tutor")) {
+    if (isset($_SESSION["user_id"])) {
     $mysqli = require __DIR__ . "/db.php";
 
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
@@ -40,12 +39,19 @@ session_start();
     die();
   }
 
+  function convertDate($date) {
+    $dateTimestamp = strtotime($date);
+    $dateConverted = date('d-m-Y', $dateTimestamp);
+    return $dateConverted;
+  }
+
   function displayResources() {
     if (isset($_SESSION["user_id"])) {
       $mysqli = require __DIR__ . "/db.php";
       $escapedCourseTitle = $mysqli->real_escape_string($_SESSION['course']);
+      $courseId = $_GET['courseId'];
 
-      $sql = "SELECT * FROM weeks WHERE courseId = (SELECT id FROM courses WHERE title = '$escapedCourseTitle')";
+      $sql = "SELECT * FROM weeks WHERE courseId = (SELECT id FROM courses WHERE id = '$courseId')";
       $weeksResult = $mysqli->query($sql);
     
       // // Retrieve resources for the current course
@@ -55,6 +61,9 @@ session_start();
       $weekHeading = $week['heading'];
       $weekDescription = $week['description'];
 
+      //Get today's date
+      $current_date = date("Y-m-d");
+
       // Display week heading and description
       echo "<div class='resourceContainer'>";
       echo "<div class='resourceHeading'>$weekHeading</div>";
@@ -62,7 +71,7 @@ session_start();
 
       // Retrieve resources for the current week
 
-      $sql = "SELECT resources.fileName, resources.id FROM resources
+      $sql = "SELECT resources.fileName, resources.id, resources.uploadDate FROM resources
             INNER JOIN weeksresources ON resources.id = weeksresources.resourceId
             WHERE weekId = '$weekId'";
 
@@ -70,13 +79,17 @@ session_start();
 
       while ($resource = $resourcesResult->fetch_assoc()) {
         $fileName = $resource['fileName'];
-
+        $downDate = $resource['uploadDate'];
+        
         // Display resource information
         echo "<div class='resources'>";
-        echo "<a href='resources/$fileName'>$fileName</a>";
+        if ($current_date >= $downDate) {
+          echo "<a href='resources/$fileName'>$fileName</a>";
+        } else {
+          echo "<p>This resource will be available for download on <span class='date'>" . convertDate($downDate) . "</span></p>";
+        }
         echo "</div>";
       }
-
       echo "</div>";
     }
   }
