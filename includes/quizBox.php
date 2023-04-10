@@ -44,31 +44,4 @@
         }
       }
 
-      function takeQuiz($userEmail, $quizID, $score) {
-        $mysqli = require __DIR__ . "../../db.php";
-    
-        // Check if the user has already taken this quiz
-        $sql = "SELECT * FROM scores WHERE studentUsername = '$userEmail' AND quizID = '$quizID'";
-        $result = $mysqli->query($sql);
-        $row = $result->fetch_assoc();
-        $questionNum = $row['questionNum'];
-    
-        if ($result->num_rows > 0) {
-            // User has already taken this quiz, update their score
-            $sql = "UPDATE scores SET score = $score, questionNum = $questionNum WHERE studentUsername = '$userEmail' AND quizID = '$quizID'";
-            if ($mysqli->query($sql) === TRUE) {
-                echo "Quiz score updated successfully";
-            } else {
-                echo "Error updating quiz score: " . $mysqli->error;
-            }
-        } else {
-            // User has not taken this quiz, insert their score
-            $sql = "INSERT INTO scores (studentUsername, quizID, score, questionNum) VALUES ('$userEmail', '$quizID', $score, $questionNum)";
-            if ($mysqli->query($sql) === TRUE) {
-                echo "Quiz score inserted successfully";
-            } else {
-                echo "Error inserting quiz score: " . $mysqli->error;
-            }
-        }
-    }
 ?>

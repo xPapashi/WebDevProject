@@ -3,6 +3,10 @@
 
 //Code that has to work
 if (isset($_SESSION["user_id"]) && ($_SESSION['userType'] === "Student")) {
+    if (isset($_SESSION['quizID'])) {
+        header("Location: index.php");
+        die();
+    }
     $mysqli = require __DIR__ . "/db.php";
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
 
