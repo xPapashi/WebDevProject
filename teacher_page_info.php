@@ -106,7 +106,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
                             <li><button class="trigger delCourseTrigger">Delete Course</button></li>
                             <li><a href='./course_resources.php'>Add Resource</a></li>
                             <li><a href='./Q_add.php'>Add Quiz</a></li>
-                            <li><button class="trigger ">Check Quiz Scores</button></li>
+                            <li><a href='./scores.php'>Check Quiz Scores</a></li>
                             </ul>
                         </div>
                         </div>

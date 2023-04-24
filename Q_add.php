@@ -88,7 +88,7 @@
                         <label for="uploadFile">Select a file: </label>
                         <input type="file" name="uploadFile"/>
                         <br/>
-                        <input type="submit" value="UPLOAD FILE"/>
+                        <input style=align:right; type="submit" value="UPLOAD FILE"/>
                       </form>
 
                     </div>

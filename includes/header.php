@@ -31,7 +31,6 @@
             <li><a href="#">Timeline</a></li>
             <li><a href="./course_list.php">Courses</a></li>
             <li><a href="./quiz.php">Quizzes</a></li>
-            <li><a href="#">Sample Text</a></li>
         </ul>
     </div>
     <div class="linksRight">
