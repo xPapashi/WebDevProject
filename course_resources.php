@@ -94,8 +94,6 @@ session_start();
         <div class="content" id="content">
           <div class="heading"><span>Course Resources</span></div>
           <div class="topContents">
-            <p>Course Progress: 0%</p>
-            <button class="addContentButton">Add more Resources</button>
           </div>
           <div class="resourceContainer">
             <form
@@ -109,6 +107,7 @@ session_start();
               <?php echo generateCourses() ?>
               <button type="submit" name="submit">Upload file</button>
             </form>
+            <div class="response"><?php echo isset($_SESSION['response']) ? $_SESSION['response'] : ''; ?></div>
           </div>
         </div>
       </div>

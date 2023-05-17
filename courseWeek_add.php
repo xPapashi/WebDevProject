@@ -66,22 +66,35 @@ session_start();
         <div class="content" id="content">
           <div class="heading"><span>Course Resources</span></div>
           <h1>Add Week</h1>
-          <div id="status"></div>
-            <form method="post">
+          <div id="status" class="status">
+            <form id="weekForm" method="post">
                 <div>
                     <label for="course">Course:</label>
                     <?php generateCourses(); ?>
+                    <br><br>
                 </div>
                 <div>
                     <label for="weekHeading">Week Heading:</label>
                     <input type="text" name="weekHeading" id="weekHeading" required>
+                    <br><br>
                 </div>
                 <div>
                     <label for="weekDescription">Week Description:</label>
                     <textarea name="weekDescription" id="weekDescription" required></textarea>
+                    <br><br>
                 </div>
-                <button type="submit">Add Week</button>
+                <script type = "text/javascript">  
+                var form = document.getElementById('weekForm');
+                function Alert() {
+                if (form.checkValidity()) {
+                alert("Adding Succesful!");
+                }   
+                }  
+                </script>   
+                <button type="submit" onclick="Alert()">Add Week</button>
+                
             </form>
+          </div>
         </div>
       </div>
     </div>
