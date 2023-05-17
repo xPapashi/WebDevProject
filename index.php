@@ -34,7 +34,6 @@
   <body onclick="closeNav()">
     <?php include './includes/header.php'; ?>
     <div class="main" id="">
-      <!-- <?php include './includes/sidebar.php'; ?> -->
       <div class="container">
         <div class="content">
           <div class="heading"><span>Welcome to AceTraining</span></div>
@@ -63,16 +62,6 @@
               </div>
             </div>
           </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <h3>This is just a sample text.</h3>
         </div>
       </div>
   </body>
