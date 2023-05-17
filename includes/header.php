@@ -28,7 +28,6 @@
         <div class="logo-separator"></div>
         <ul class="links">
             <li><a href="./index.php" class="active">Home</a></li>
-            <li><a href="#">Timeline</a></li>
             <li><a href="./course_list.php">Courses</a></li>
             <li><a href="./quiz.php">Quizzes</a></li>
         </ul>
