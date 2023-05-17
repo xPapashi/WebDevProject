@@ -1,7 +1,10 @@
 <?php
-session_start();
+if(!isset($_SESSION)){ 
+        session_start(); 
+    }
 
     require_once("./includes/userCourse.php");
+    require_once("./upload_resources.php");
 
     function generateCourses() {
       $mysqli = require __DIR__ . "/db.php";
@@ -43,6 +46,11 @@ session_start();
         }
         echo "</select>";
     }
+  
+  if (isset($_SESSION['verifyMsg'])) {
+  echo '<script>showMessage("' . $_SESSION['verifyMsg'] . '")</script>';
+  unset($_SESSION['verifyMsg']);
+  }
 
   if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Admin") 
   || ($_SESSION["userType"] === "Tutor")) {
@@ -82,7 +90,11 @@ session_start();
     die();
   }
 ?>
-
+<script>
+function showMessage(msg) {
+  document.getElementById('content').innerHTML = `<p>${msg}</p>`;
+}
+</script>
 
 
 <!DOCTYPE html>
@@ -134,6 +146,7 @@ session_start();
                   <button type="submit" name="submit">Upload file</button>
                 </div>           
               </form>
+              </ul>
           </div>
         </div>
       </div>
@@ -141,3 +154,6 @@ session_start();
     <script src="./js/rescources_functions.js"></script>
   </body>
 </html>
+
+<?php
+unset($_SESSION['verifyMsg']);

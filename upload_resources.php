@@ -1,7 +1,10 @@
 <?php
-	session_start();
+	if(!isset($_SESSION)){ 
+        session_start(); 
+    }
     $mysqli = require __DIR__ . "/db.php";
 
+$verifyMsg = [];
 
 if (isset($_POST['submit'])){
     if(isset($_FILES['uploadFile'])) {
@@ -15,9 +18,11 @@ if (isset($_POST['submit'])){
 
         $extension = substr($name, -3);
 
+        
         if ($size <= 5000000) {
             if (move_uploaded_file($tmp_name, $target)) {
-                echo "<p style='color: green'>File $name has been successfully uploaded!</p>";
+                $verifyMsg = "<p style='color: green'>File $name has been successfully uploaded!</p>";
+                echo "<script>showMessage('$verifyMsg')</script>";
                 $sql = "INSERT INTO resources(filename, uploader, uploadDate, courseId) VALUE ('$name', '$uploader', DATE('$uploadDate'), '$userCourseId')";
                 $result = $mysqli->query($sql);
 
@@ -31,12 +36,14 @@ if (isset($_POST['submit'])){
                 $result = $mysqli->query($sql);
 
             } else {
-                echo "<p style='color: red;'>File $name failed to upload. Please try again.</p>";
+                $verifyMsg = "<p style='color: red;'>File $name failed to upload. Please try again.</p>";
+                echo "<script>showMessage('$verifyMsg')</script>";
             }
         } else {
-            echo "<p style='color: red;'>File $name is too large!!!</p>";
+            $verifyMsg = "<p style='color: red;'>File $name is too large!!!</p>";
+            echo "<script>showMessage('$verifyMsg')</script>";
         }
-        
+    
     }
 
 
@@ -63,4 +70,14 @@ if (isset($_POST['submit'])){
     }
     echo "</table>";
 }
+
+
+if ($verifyMsg){
+    var_dump($verifyMsg);
+}
+
+if (isset($_POST['submit'])) {
+  echo "<script>showMessage('$verifyMsg')</script>";
+}
+
 ?>
