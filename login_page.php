@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
    
     // var_dump(password_hash($_POST['password'], PASSWORD_DEFAULT));
-    
 
     if ($user) {
         if (password_verify($_POST["password"], $user["password"]) &&
