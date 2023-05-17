@@ -17,6 +17,9 @@
 
     $_SESSION["user_initials"] = $initials;
     $_SESSION["userType"] = $userType;
+  } else {
+    header("Location: index.php");
+    die();
   }
 ?>
 

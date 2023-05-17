@@ -17,6 +17,8 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
     $initials = $letter_forename . $letter_surname;
     $fullname = $user["forename"] . " " . $user["surname"];
     $email = strtolower($user["email"]);
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['initials'] = $initials;
 
     //Get Course
     $escapedUserEmail = $mysqli->real_escape_string($user['email']);
@@ -104,6 +106,7 @@ if (isset($_SESSION["user_id"]) and ($_SESSION["userType"] === "Tutor")) {
                             <ul>
                             <li><button class="trigger addCourseTrigger">Add Course</button></li>
                             <li><button class="trigger delCourseTrigger">Delete Course</button></li>
+                            <li><a href='./courseWeek_add.php'>Add Week for Course</a></li>
                             <li><a href='./course_resources.php'>Add Resource</a></li>
                             <li><a href='./Q_add.php'>Add Quiz</a></li>
                             <li><a href='./scores.php'>Check Quiz Scores</a></li>
