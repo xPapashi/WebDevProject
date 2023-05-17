@@ -17,7 +17,6 @@ if (isset($_POST['submit'])){
 
         if ($size <= 5000000) {
             if (move_uploaded_file($tmp_name, $target)) {
-                echo "<p style='color: green'>File $name has been successfully uploaded!</p>";
                 $sql = "INSERT INTO resources(filename, uploader, uploadDate, courseId) VALUE ('$name', '$uploader', DATE('$uploadDate'), '$userCourseId')";
                 $result = $mysqli->query($sql);
 
@@ -29,38 +28,17 @@ if (isset($_POST['submit'])){
                 }
                 $sql = "INSERT INTO weeksresources(weekId, resourceId) VALUES ('$week', '$resourceId')";
                 $result = $mysqli->query($sql);
-
+                $_SESSION['response'] = "<p style='color: green;'>File has been successfully uploaded!</p>";
+                header("Location: course_resources.php");
             } else {
-                echo "<p style='color: red;'>File $name failed to upload. Please try again.</p>";
+                $_SESSION['response'] = "<p style='color: red;'>Something went wrong!</p>";
+                header("Location: course_resources.php");
             }
         } else {
-            echo "<p style='color: red;'>File $name is too large!!!</p>";
+             $_SESSION['response'] = "<p style='color: red;'>Your file is too big!</p>";
+            header("Location: course_resources.php");
         }
         
     }
-
-
-
-
-    $sql = "SELECT * FROM resources;";
-    $result = $mysqli->query($sql);
-
-    echo "<h3>User Uploads</h3>";
-    echo "<table>
-    <tr>
-    <th>ID</th>
-    <th>FileName</th>
-    <th>Uploader</th>
-    </tr>";
-
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['id'] . "</td>";
-        echo "<td>" . $row['fileName'] . "</td>";
-        echo "<td>" . $row['uploader'] . "</td>";
-        echo "<td>" . $row['uploadDate'] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
 }
 ?>
